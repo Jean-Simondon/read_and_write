@@ -1,0 +1,103 @@
+.actes {
+   
+    &__section {
+        width: 100%;
+        background-color: $color-grey-light-2;
+    }
+
+    &__banner {
+        width: 100%;
+        background-color: $color-grey-dark-2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        font-weight: 400;
+        color: white;
+    }
+
+}
+
+.chapitres {
+
+    &__section {
+        width: 100%;
+        background-color: $color-grey-light-2;
+    }
+
+    &__banner {
+        width: 100%;
+        background-color: $color-grey-dark-2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        font-weight: 400;
+        color: white;
+    }
+
+}
+
+.scenes {
+
+    &__section {
+        width: 100%;
+        background-color: $color-grey-light-2;
+    }
+
+    &__banner {
+        width: 100%;
+        background-color: $color-grey-dark-2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        font-weight: 400;
+        color: white;
+    }
+
+}
+
+
+.cellules {
+    
+    &__section {
+        width: 100%;
+        background-color: $color-grey-light-2;
+    }
+
+    &__breadcrumb {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding-top: 1rem;
+        padding-left: 4rem;
+        padding-bottom: 2rem;
+        overflow-x: scroll;
+
+        &__item {
+            height:1rem;
+            min-width:1rem;
+            max-width: 1rem;
+            margin-right: 1rem;
+            background-color: red;
+        }
+    }
+
+    &__banner {
+        width: 100%;
+        background-color: $color-grey-dark-2;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        font-weight: 400;
+        color: white;
+    }
+
+}

@@ -1,0 +1,43 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px */
+    line-height: 1.7;
+    color: $color-grey-dark;
+}
+
+.heading-primary {
+    font-size: 2rem;
+    color: white;
+    display: block;
+    text-align: center;
+
+    &--main {
+        font-size: 4rem;
+        font-weight: 400;
+        letter-spacing: 3rem;
+    }
+
+    &--sub {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1rem;
+    }
+}
+
+.heading-secondary {
+    letter-spacing: .2rem;
+    margin: 0 5rem;
+
+    &--main {
+        margin-left: 3rem;
+        font-size: 4rem;
+        font-weight: 400;
+    }
+
+    &--sub {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+}

@@ -1,0 +1,49 @@
+.navigation {
+    width: 100%;
+    background-color: grey;
+
+    &__logo-box {
+        display: none,
+    }
+
+    &__logo {
+        display: none,
+    }
+
+    &__nav {
+
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    &__item {
+        // margin: 1rem;
+    }
+
+    &__link {
+        &:link,
+        &:visited {
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%;
+            color: $color-grey-dark-2;
+        }
+
+        // text-decoration: none;
+        // color: white;
+    }
+
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+{% include 'parts/meta.html.twig' %}
+
+    <body>
+
+        {% include 'parts/header.html.twig' %}
+
+        {% block content %} <h1>Contenu</h1> {% endblock %}
+
+        {% include 'parts/footer.html.twig' %}
+
+        {% include 'parts/script.html.twig' %}
+
+    </body>
+
+</html>

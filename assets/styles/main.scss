@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import "abstracts/all-abstract";
+
+// 2. Vendors
+@import 'vendors/jquery-ui';
+
+// 3. Base stuff
+@import 'base/all-base';
+
+// 4. Layout-related sections
+@import 'layout/all-layout';
+
+// 5. Components
+@import 'components/all-components';
+
+// 6. Modules
+@import 'modules/all-modules';
+
+// 7. Page-specific styles
+@import 'pages/all-pages';
+
+// 8. Themes
+@import 'themes/all-theme';
