@@ -30,7 +30,7 @@ class Manuscrit
     private $resume;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true CHECK(genre = 'science-fiction' OR genre = 'nouvelle' OR genre = 'thriller'))
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $genre;
 
@@ -41,7 +41,7 @@ class Manuscrit
     private $auteur;
 
     /**
-     * @ORM\OneToMany(targetEntity=Acte::class, mappedBy="manuscrit", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Acte::class, mappedBy="manuscrit")
      */
     private $actes;
 

@@ -36,7 +36,7 @@ class Scene
     private $published;
 
     /**
-     * @ORM\OneToMany(targetEntity=Cellule::class, mappedBy="scene", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Cellule::class, mappedBy="scene")
      */
     private $cellules;
 

@@ -31,7 +31,7 @@ class Acte
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Chapitre::class, mappedBy="acte", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Chapitre::class, mappedBy="acte")
      */
     private $chapitres;
 

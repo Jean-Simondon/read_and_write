@@ -41,7 +41,7 @@ class Chapitre
     private $published;
 
     /**
-     * @ORM\OneToMany(targetEntity=Scene::class, mappedBy="chapitre", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Scene::class, mappedBy="chapitre")
      */
     private $scenes;
 

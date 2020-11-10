@@ -34,7 +34,7 @@ class Cellule
     private $contenu_audio;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true CHECK(type = 'action' OR type = 'desciption' OR type = 'explication', OR type = 'dialogue'))
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $type;
 
