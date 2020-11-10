@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\AuteurRepository;
+use App\Repository\AuthorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AuteurRepository::class)
+ * @ORM\Entity(repositoryClass=AuthorRepository::class)
  */
-class Auteur
+class Author
 {
     /**
      * @ORM\Id
@@ -27,17 +27,17 @@ class Auteur
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
      */
-    private $nom;
+    private $last_name;
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
      */
-    private $prenom;
+    private $first_name;
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
      */
-    private $nom_de_plume;
+    private $pen_name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,16 +47,16 @@ class Auteur
     /**
      * @ORM\Column(type="string", length=30)
      */
-    private $mail;
+    private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity=Manuscrit::class, mappedBy="auteur")
-     */
-    private $manuscrits;
+     * @ORM\OneToMany(targetEntity=Manuscript::class, mappedBy="author")
+s     */
+    private $manuscripts;
 
     public function __construct()
     {
-        $this->manuscrits = new ArrayCollection();
+        $this->manuscripts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,38 +76,38 @@ class Auteur
         return $this;
     }
 
-    public function getNom(): ?string
+    public function getLastName(): ?string
     {
-        return $this->nom;
+        return $this->last_name;
     }
 
-    public function setNom(string $nom): self
+    public function setLastName(string $last_name): self
     {
-        $this->nom = $nom;
+        $this->last_name = $last_name;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->prenom;
+        return $this->first_name;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setFirstName(string $first_name): self
     {
-        $this->prenom = $prenom;
+        $this->first_name = $first_name;
 
         return $this;
     }
 
-    public function getNomDePlume(): ?string
+    public function getPenName(): ?string
     {
-        return $this->nom_de_plume;
+        return $this->pen_name;
     }
 
-    public function setNomDePlume(?string $nom_de_plume): self
+    public function setPenName(?string $pen_name): self
     {
-        $this->nom_de_plume = $nom_de_plume;
+        $this->pen_name = $pen_name;
 
         return $this;
     }
@@ -124,42 +124,42 @@ class Auteur
         return $this;
     }
 
-    public function getMail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->mail;
+        return $this->email;
     }
 
-    public function setMail(string $mail): self
+    public function setEmail(string $email): self
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * @return Collection|Manuscrit[]
+     * @return Collection|Manuscript[]
      */
-    public function getManuscrits(): Collection
+    public function getManuscripts(): Collection
     {
-        return $this->manuscrits;
+        return $this->manuscripts;
     }
 
-    public function addManuscrit(Manuscrit $manuscrit): self
+    public function addManuscript(Manuscript $manuscript): self
     {
-        if (!$this->manuscrits->contains($manuscrit)) {
-            $this->manuscrits[] = $manuscrit;
-            $manuscrit->setAuteur($this);
+        if (!$this->manuscripts->contains($manuscript)) {
+            $this->manuscripts[] = $manuscript;
+            $manuscript->setAuthor($this);
         }
 
         return $this;
     }
 
-    public function removeManuscrit(Manuscrit $manuscrit): self
+    public function removeManuscript(Manuscript $manuscript): self
     {
-        if ($this->manuscrits->removeElement($manuscrit)) {
+        if ($this->manuscripts->removeElement($manuscript)) {
             // set the owning side to null (unless already changed)
-            if ($manuscrit->getAuteur() === $this) {
-                $manuscrit->setAuteur(null);
+            if ($manuscript->getAuthor() === $this) {
+                $manuscript->setAuthor(null);
             }
         }
 

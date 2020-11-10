@@ -20,15 +20,15 @@ class Scene
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=chapitre::class, inversedBy="scenes")
+     * @ORM\ManyToOne(targetEntity=chapter::class, inversedBy="scenes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $chapitre;
+    private $chapter;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nom;
+    private $title;
 
     /**
      * @ORM\Column(type="boolean")
@@ -36,13 +36,13 @@ class Scene
     private $published;
 
     /**
-     * @ORM\OneToMany(targetEntity=Cellule::class, mappedBy="scene")
+     * @ORM\OneToMany(targetEntity=Cell::class, mappedBy="scene")
      */
-    private $cellules;
+    private $cells;
 
     public function __construct()
     {
-        $this->cellules = new ArrayCollection();
+        $this->cells = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -50,26 +50,26 @@ class Scene
         return $this->id;
     }
 
-    public function getChapitre(): ?chapitre
+    public function getChapter(): ?chapter
     {
-        return $this->chapitre;
+        return $this->chapter;
     }
 
-    public function setChapitre(?chapitre $chapitre): self
+    public function setChapter(?chapter $chapter): self
     {
-        $this->chapitre = $chapitre;
+        $this->chapter = $chapter;
 
         return $this;
     }
 
-    public function getNom(): ?string
+    public function getTitle(): ?string
     {
-        return $this->nom;
+        return $this->title;
     }
 
-    public function setNom(?string $nom): self
+    public function setTitle(?string $title): self
     {
-        $this->nom = $nom;
+        $this->title = $title;
 
         return $this;
     }
@@ -87,29 +87,29 @@ class Scene
     }
 
     /**
-     * @return Collection|Cellule[]
+     * @return Collection|Cell[]
      */
-    public function getCellules(): Collection
+    public function getCells(): Collection
     {
-        return $this->cellules;
+        return $this->celles;
     }
 
-    public function addCellule(Cellule $cellule): self
+    public function addCell(Cell $cell): self
     {
-        if (!$this->cellules->contains($cellule)) {
-            $this->cellules[] = $cellule;
-            $cellule->setScene($this);
+        if (!$this->cells->contains($cell)) {
+            $this->cells[] = $cell;
+            $cell->setScene($this);
         }
 
         return $this;
     }
 
-    public function removeCellule(Cellule $cellule): self
+    public function removeCell(Cell $cell): self
     {
-        if ($this->cellules->removeElement($cellule)) {
+        if ($this->cells->removeElement($cell)) {
             // set the owning side to null (unless already changed)
-            if ($cellule->getScene() === $this) {
-                $cellule->setScene(null);
+            if ($cell->getScene() === $this) {
+                $cell->setScene(null);
             }
         }
 

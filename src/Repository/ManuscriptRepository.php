@@ -7,20 +7,20 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Manuscrit|null find($id, $lockMode = null, $lockVersion = null)
- * @method Manuscrit|null findOneBy(array $criteria, array $orderBy = null)
- * @method Manuscrit[]    findAll()
- * @method Manuscrit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Manuscript|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Manuscript|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Manuscript[]    findAll()
+ * @method Manuscript[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ManuscritRepository extends ServiceEntityRepository
+class ManuscriptRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Manuscrit::class);
+        parent::__construct($registry, Manuscript::class);
     }
 
     // /**
-    //  * @return Manuscrit[] Returns an array of Manuscrit objects
+    //  * @return Manuscript[] Returns an array of Manuscript objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ManuscritRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Manuscrit
+    public function findOneBySomeField($value): ?Manuscript
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CelluleRepository;
+use App\Repository\CellRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CelluleRepository::class)
+ * @ORM\Entity(repositoryClass=CellRepository::class)
  */
-class Cellule
+class Cell
 {
     /**
      * @ORM\Id
@@ -18,7 +18,7 @@ class Cellule
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=scene::class, inversedBy="cellules")
+     * @ORM\ManyToOne(targetEntity=scene::class, inversedBy="cells")
      * @ORM\JoinColumn(nullable=false)
      */
     private $scene;
@@ -26,12 +26,12 @@ class Cellule
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $contenu_texte;
+    private $text_content;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $contenu_audio;
+    private $audio_content;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
@@ -60,26 +60,26 @@ class Cellule
         return $this;
     }
 
-    public function getContenuTexte(): ?string
+    public function getTextContent(): ?string
     {
-        return $this->contenu_texte;
+        return $this->text_content;
     }
 
-    public function setContenuTexte(?string $contenu_texte): self
+    public function setTextContent(?string $text_content): self
     {
-        $this->contenu_texte = $contenu_texte;
+        $this->text_content = $text_content;
 
         return $this;
     }
 
-    public function getContenuAudio()
+    public function getAudioContent()
     {
-        return $this->contenu_audio;
+        return $this->audio_content;
     }
 
-    public function setContenuAudio($contenu_audio): self
+    public function setAudioContent($audio_content): self
     {
-        $this->contenu_audio = $contenu_audio;
+        $this->audio_content = $audio_content;
 
         return $this;
     }

@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ChapitreRepository;
+use App\Repository\ChapterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ChapitreRepository::class)
+ * @ORM\Entity(repositoryClass=ChapterRepository::class)
  */
-class Chapitre
+class Chapter
 {
     /**
      * @ORM\Id
@@ -20,15 +20,15 @@ class Chapitre
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=acte::class, inversedBy="chapitres")
+     * @ORM\ManyToOne(targetEntity=act::class, inversedBy="chapters")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $acte;
+    private $act;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nom;
+    private $title;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -41,7 +41,7 @@ class Chapitre
     private $published;
 
     /**
-     * @ORM\OneToMany(targetEntity=Scene::class, mappedBy="chapitre")
+     * @ORM\OneToMany(targetEntity=Scene::class, mappedBy="chapter")
      */
     private $scenes;
 
@@ -55,26 +55,26 @@ class Chapitre
         return $this->id;
     }
 
-    public function getActe(): ?acte
+    public function getAct(): ?act
     {
-        return $this->acte;
+        return $this->act;
     }
 
-    public function setActe(?acte $acte): self
+    public function setAct(?act $act): self
     {
-        $this->acte = $acte;
+        $this->act = $act;
 
         return $this;
     }
 
-    public function getNom(): ?string
+    public function getTitle(): ?string
     {
-        return $this->nom;
+        return $this->title;
     }
 
-    public function setNom(?string $nom): self
+    public function setTitle(?string $title): self
     {
-        $this->nom = $nom;
+        $this->title = $title;
 
         return $this;
     }
@@ -91,14 +91,14 @@ class Chapitre
         return $this;
     }
 
-    public function getPublish(): ?bool
+    public function getPublished(): ?bool
     {
-        return $this->publish;
+        return $this->published;
     }
 
-    public function setPublish(bool $publish): self
+    public function setPublished(bool $published): self
     {
-        $this->publish = $publish;
+        $this->published = $published;
 
         return $this;
     }
@@ -115,7 +115,7 @@ class Chapitre
     {
         if (!$this->scenes->contains($scene)) {
             $this->scenes[] = $scene;
-            $scene->setChapitre($this);
+            $scene->setChapter($this);
         }
 
         return $this;
@@ -125,8 +125,8 @@ class Chapitre
     {
         if ($this->scenes->removeElement($scene)) {
             // set the owning side to null (unless already changed)
-            if ($scene->getChapitre() === $this) {
-                $scene->setChapitre(null);
+            if ($scene->getChapter() === $this) {
+                $scene->setChapter(null);
             }
         }
 

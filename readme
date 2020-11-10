@@ -24,6 +24,9 @@ cmd : npm run dev || yarn encore dev
 action = modif sur webpack.config.js && modif sur assets/app.js && modif sur assets/styles et assets/scripts
 -- pour la base de données
 cmd : composer74 require symfony/orm-pack
+action : configuration du fichier .env
+cmd : php74 bin/console doctrine:database:create
+
 
 
 
