@@ -22,21 +22,39 @@ class FrontController extends AbstractController
     public function index(): Response
     {
 
-        $entityManager = $this->getDoctrine()->getManager();
+        // --------------------------------------------------
 
-        $author = new Author();
-        $author->setLastName('bernard');
-        $author->setFirstName('xavier');
+        // Test de lecture dans la BDD :
+
+        $manuscript = $this->getDoctrine()
+        ->getRepository(Manuscript::class)
+        ->findAll();
+
+        var_dump($manuscript);
+
+        die();
+
+        // --------------------------------------------------
+
+        // Test d'écriture dans la BDD :
+
+        // $entityManager = $this->getDoctrine()->getManager();
+
+        // $author = new Author();
+        // $author->setLastName('bernard');
+        // $author->setFirstName('xavier');
         
-        $entityManager->persist($author);
+        // $entityManager->persist($author);
 
-        $manuscript = new Manuscript();
-        $manuscript->setTitle('Un nouveau manuscrit');
-        $manuscript->setAuthor($author);
+        // $manuscript = new Manuscript();
+        // $manuscript->setTitle('Un nouveau manuscrit');
+        // $manuscript->setAuthor($author);
 
-        $entityManager->persist($manuscript);
+        // $entityManager->persist($manuscript);
 
-        $entityManager->flush();
+        // $entityManager->flush();
+
+        // --------------------------------------------------
 
         return $this->render('pages/home.html.twig', [
             'title' => 'HomePage',

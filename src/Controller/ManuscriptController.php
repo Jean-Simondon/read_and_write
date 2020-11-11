@@ -26,11 +26,11 @@ class ManuscriptController extends AbstractController
         ->getRepository(Manuscript::class)
         ->find($id);
 
-        // if (!$manuscript) {
-        //     throw $this->createNotFoundException(
-        //         'No manuscript found for id '.$id
-        //     );
-        // }
+        if (!$manuscript) {
+            throw $this->createNotFoundException(
+                'No manuscript found for id '.$id
+            );
+        }
 
         var_dump($manuscript);
         die();
@@ -47,18 +47,18 @@ class ManuscriptController extends AbstractController
         // or you can add an argument to the action: createProduct(EntityManagerInterface $entityManager)
         $entityManager = $this->getDoctrine()->getManager();
 
-        $manuscrit = new Manuscript();
-        $manuscrit->setTitle('le titre');
-        $manuscrit->setAbstract('Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente itaque et, natus voluptas reprehenderit illo voluptatibus dolore consequuntur iure, ratione maiores corporis impedit eius voluptate debitis expedita adipisci! Perferendis, aliquam.');
-        $manuscrit->setType('Science-fiction');
+        $manuscript = new Manuscript();
+        $manuscript->setTitle('le titre');
+        $manuscript->setAbstract('Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente itaque et, natus voluptas reprehenderit illo voluptatibus dolore consequuntur iure, ratione maiores corporis impedit eius voluptate debitis expedita adipisci! Perferendis, aliquam.');
+        $manuscript->setType('Science-fiction');
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($manuscrit);
+        $entityManager->persist($manuscript);
 
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new product with id '.$manuscrit->getId());
+        return new Response('Saved new product with id '.$manuscript->getId());
     }
 
 
