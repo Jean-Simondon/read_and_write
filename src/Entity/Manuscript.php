@@ -7,6 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Entity\Author;
+use App\Entity\Act;
+use App\Entity\Chapter;
+use App\Entity\Scene;
+use App\Entity\Cell;
+
 /**
  * @ORM\Entity(repositoryClass=ManuscriptRepository::class)
  */

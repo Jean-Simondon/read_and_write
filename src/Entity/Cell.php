@@ -5,6 +5,12 @@ namespace App\Entity;
 use App\Repository\CellRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Entity\Author;
+use App\Entity\Manuscript;
+use App\Entity\Act;
+use App\Entity\Chapter;
+use App\Entity\Scene;
+
 /**
  * @ORM\Entity(repositoryClass=CellRepository::class)
  */
