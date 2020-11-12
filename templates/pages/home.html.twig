@@ -2,7 +2,36 @@
 
 {% block content %}
 
-    {% block title %} <h1> Home </h1> {{ title }}!{% endblock %}
+    <div class="shell">
 
+        <header class="header">
+            <div class="heading-primary">
+                <h1 class="heading-primary--main">Read & Write</h1>
+                <p class="heading-primary--sub">Un outil de lecture comme d'écriture</p>
+            </div>
+        </header>
+
+        <section class="section-auteur">
+            <div class="heading-secondary">
+                <h3 class="heading-secondary--main">Auteur ?</h3>
+                <p class="heading-secondary--sub">Profitez de ce site pour trouver tous les outils</p>
+                <p class="heading-secondary--sub">nécessaire à la rédaction de votre prochain récit</p>
+            </div>
+            <a class="btn btn--white">
+                <p>Get Started</p>
+            </a>
+        </section>
+
+        <section class="section-lecteur">
+            <a class="btn btn--white">
+                <p>Get Started</p>
+            </a>
+            <div class="heading-secondary">
+                <h3 class="heading-secondary--main">Lecteur ?</h3>
+                <p class="heading-secondary--sub">Découvrez une toute nouvelle manière de lire</p>
+            </div>
+        </section>
+
+    </div>
 
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+
+    <h1>Archives Auteurs</h1>
+
+    {% for author in authors %}
+        <li>{{ author.last_name }}</li>
+        <li>{{ author.first_name }}</li>
+        <li>{{ author.pen_name }}</li>
+        <li>{{ author.email }}</li>
+    {% endfor %}
+
+{% endblock %}

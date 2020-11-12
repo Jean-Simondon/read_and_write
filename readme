@@ -1,36 +1,43 @@
-// ----------------- RECUPERATION :
+// ----------------- RECUPERATION ----------------- :
 
-composer73 install / composer73 update
+composer install / composer update
 npm run dev
 yarn run encore dev
 
-// ----------------- INSTALLATION :
+// ----------------- INSTALLATION ----------------- :
 
-cmd : composer73 create-project symfony/website-skeleton=^4.4 read_and_write
+cmd : composer create-project symfony/website-skeleton=^4.4 read_and_write
 cmd : cd ./read_and_write
 cmd : php bin/console cache:clear --env=dev
 action : composer.json > allow-contrib = true
--- package de base
-cmd : composer73 require symfony/apache-pack
-cmd : composer73 require symfony/maker-bundle
-cmd : composer73 require symfony/profiler-pack
-cmd : composer73 require symfony/twig-bundle
--- pour les assets
-cmd : composer73 require symfony/webpack-encore-bundle
+
+-- package de base --
+
+cmd : composer require symfony/apache-pack
+cmd : composer require symfony/maker-bundle
+cmd : composer require symfony/profiler-pack
+cmd : composer require symfony/twig-bundle
+
+-- pour les assets --
+
+cmd : composer require symfony/webpack-encore-bundle
 cmd : yarn add jquery
 cmd : yarn add sass-loader@^9.0.1 sass --dev
-cmd : yarn install
-cmd : npm run dev || yarn encore dev
+cmd : npm install || yarn install
 action = modif sur webpack.config.js && modif sur assets/app.js && modif sur assets/styles et assets/scripts
--- pour la base de données
-cmd : composer73 require symfony/orm-pack
-action : configuration du fichier .env
-cmd : php73 bin/console doctrine:database:create
+cmd : npm run dev || yarn encore dev
+
+-- pour la base de données --
+
+cmd : composer require symfony/orm-pack
+action : configuration du fichier .env (utiliser localhost et non pas 127.0.0.1)
+cmd : php bin/console doctrine:database:create
 
 info : DATABASE_URL=mysql://root:root@localhost:3306/read_and_write?serverVersion=5.7 avec "localhost" et non pas "127.0.0.1"
 
+problème de connexion dans les controllers :
+https://blog.stevecohen.fr/mamp-symfony-sqlstatehy000-2002-no-such-file-or-directory/
+cmd : sudo ln -s /Applications/MAMP/tmp/mysql /var/mysql
+cmd : sudo unlink nom_du_lien
 
-
-// ----------------- QUESTION :
-
-Ecrire son propre script SQL ou passer par le système de migration
+// ----------------- QUESTION ----------------- :

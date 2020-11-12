@@ -18,51 +18,42 @@ use App\Entity\Cell;
 class ManuscriptController extends AbstractController
 {
     /**
-     * @Route("/manuscript/{id}", name="manuscript_show")
+     * @Route("/archives_manucripts", name="archives_manucripts")
      */
-    public function show($id): Response
+    public function archives_manucripts()
     {
-        $manuscript = $this->getDoctrine()
-        ->getRepository(Manuscript::class)
-        ->find($id);
-
-        if (!$manuscript) {
-            throw $this->createNotFoundException(
-                'No manuscript found for id '.$id
-            );
-        }
-
-        var_dump($manuscript);
-        die();
-        // return new Response('Check out this great product: '.$manuscript->getTitle());
+        return $this->render('pages/manuscript/archives_manucripts.html.twig', [
+            'title' => 'Manuscrits',
+        ]);
     }
-
 
     /**
-     * @Route("/manuscript_create", name="create_manuscript")
+     * @Route("/archives_my_manuscripts", name="archives_my_manuscripts")
      */
-    public function createManuscript(): Response
+    public function archives_my_manuscripts()
     {
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to the action: createProduct(EntityManagerInterface $entityManager)
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $manuscript = new Manuscript();
-        $manuscript->setTitle('le titre');
-        $manuscript->setAbstract('Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente itaque et, natus voluptas reprehenderit illo voluptatibus dolore consequuntur iure, ratione maiores corporis impedit eius voluptate debitis expedita adipisci! Perferendis, aliquam.');
-        $manuscript->setType('Science-fiction');
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($manuscript);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        return new Response('Saved new product with id '.$manuscript->getId());
+        return $this->render('pages/manuscript/archives_my_manuscripts.html.twig', [
+            'title' => 'Mes Manuscrits',
+        ]);
     }
 
+    /**
+     * @Route("/details_manuscript/{id}", name="details_manuscript")
+     */
+    public function details_manuscript($id)
+    {
+        return $this->render('pages/manuscript/details_manuscript.html.twig', [
+            'title' => 'Un Manuscrit',
+        ]);
+    }
 
-
-
-
+    /**
+     * @Route("/details_my_manuscript/{id}", name="details_my_manuscript")
+     */
+    public function details_my_manuscript($id)
+    {
+        return $this->render('pages/manuscript/details_my_manuscript.html.twig', [
+            'title' => 'Mon Manuscrit',
+        ]);
+    }    
 }
