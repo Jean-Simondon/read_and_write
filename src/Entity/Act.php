@@ -51,12 +51,12 @@ class Act
         return $this->id;
     }
 
-    public function getManuscript(): ?manuscript
+    public function getManuscript(): ?Manuscript
     {
         return $this->manuscript;
     }
 
-    public function setManuscript(?manuscript $manuscript): self
+    public function setManuscript(?Manuscript $manuscript): self
     {
         $this->manuscript = $manuscript;
 

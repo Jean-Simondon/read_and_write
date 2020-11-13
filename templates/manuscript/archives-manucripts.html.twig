@@ -1,0 +1,25 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+
+    <header class="header">
+        <div class="heading-primary">
+            <h1 class="heading-primary--main">Archives Manuscrit</h1>
+        </div>
+    </header>
+
+    <div class="card__wrapper">
+        {% for manuscript in manuscripts %}
+            <div class="card">
+                <div class="card__title">
+                    {{ manuscript.title }}
+                </div>
+                <div class="card__thumbnail">
+                    <img src="{{ asset('img/cover.png') }}" alt="">
+                </div>
+                <a class="card__link" href="{{ path('/details_manuscript', { id: manuscript.id } ) }}">Detail</a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

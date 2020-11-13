@@ -61,12 +61,12 @@ class Chapter
         return $this->id;
     }
 
-    public function getAct(): ?act
+    public function getAct(): ?Act
     {
         return $this->act;
     }
 
-    public function setAct(?act $act): self
+    public function setAct(?Act $act): self
     {
         $this->act = $act;
 

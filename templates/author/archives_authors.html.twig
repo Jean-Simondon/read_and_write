@@ -4,20 +4,22 @@
 
     <header class="header">
         <div class="heading-primary">
-            <h1 class="heading-primary--main">Archives Manuscrit</h1>
+            <h1 class="heading-primary--main">Archives Auteurs</h1>
         </div>
     </header>
 
     <div class="card__wrapper">
-        {% for manuscript in manuscripts %}
+        {% for author in authors %}
             <div class="card">
                 <div class="card__title">
-                    {% manuscript.titre %}
+                    {{ author.pen_name }}
+                    <br>
+                    {{ author.id }}                    
                 </div>
                 <div class="card__thumbnail">
                     <img src="{{ asset('img/cover.png') }}" alt="">
                 </div>
-                <a class="card__link" href="#">Detail</a>
+                <a class="card__link" href="{{ path('/archives_my_manuscripts', { id: author.id } ) }}">Manuscrits</a>
             </div>
         {% endfor %}
     </div>

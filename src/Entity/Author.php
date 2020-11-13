@@ -82,36 +82,36 @@ class Author
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getLast_Name(): ?string
     {
         return $this->last_name;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLast_Name(?string $last_name): self
     {
         $this->last_name = $last_name;
 
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getFirst_Name(): ?string
     {
         return $this->first_name;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirst_Name(?string $first_name): self
     {
         $this->first_name = $first_name;
 
         return $this;
     }
 
-    public function getPenName(): ?string
+    public function getPen_Name(): ?string
     {
         return $this->pen_name;
     }
 
-    public function setPenName(?string $pen_name): self
+    public function setPen_Name(?string $pen_name): self
     {
         $this->pen_name = $pen_name;
 

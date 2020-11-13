@@ -97,12 +97,12 @@ class Manuscript
         return $this;
     }
 
-    public function getAuthor(): ?author
+    public function getAuthor(): ?Author
     {
         return $this->author;
     }
 
-    public function setAuthor(?author $author): self
+    public function setAuthor(?Author $author): self
     {
         $this->author = $author;
 

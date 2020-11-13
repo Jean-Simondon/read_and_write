@@ -56,12 +56,12 @@ class Scene
         return $this->id;
     }
 
-    public function getChapter(): ?chapter
+    public function getChapter(): ?Chapter
     {
         return $this->chapter;
     }
 
-    public function setChapter(?chapter $chapter): self
+    public function setChapter(?Chapter $chapter): self
     {
         $this->chapter = $chapter;
 
@@ -97,7 +97,7 @@ class Scene
      */
     public function getCells(): Collection
     {
-        return $this->celles;
+        return $this->cells;
     }
 
     public function addCell(Cell $cell): self

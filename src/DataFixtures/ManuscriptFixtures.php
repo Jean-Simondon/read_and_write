@@ -41,7 +41,7 @@ class ManuscriptFixtures extends Fixture
                 $manager->persist($manuscript);
 
                 // Actes pour chaque manuscrit
-                for ($k = 0; $k < 2; $k++) {
+                for ($k = 0; $k < 3; $k++) {
 
                     $act = new Act();
                     $act->setTitle('act' . $k);
@@ -50,7 +50,7 @@ class ManuscriptFixtures extends Fixture
                     $manager->persist($act);
 
                      // Chapitres pour chaque acte
-                    for($l = 0; $l < 5; $l++) {
+                    for($l = 0; $l < 4; $l++) {
 
                         $chapter = new Chapter();
                         $chapter->setTitle('chapter ' . $l);
@@ -61,7 +61,7 @@ class ManuscriptFixtures extends Fixture
                         $manager->persist($chapter);
 
                          // Scenes pour chaque chapitre
-                        for($m = 0; $m < 3; $m++) {
+                        for($m = 0; $m < 5; $m++) {
                         
                             $scene = new Scene();
                             $scene->setTitle('scene ' . $m); 

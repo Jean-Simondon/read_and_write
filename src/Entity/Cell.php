@@ -54,36 +54,24 @@ class Cell
         return $this->id;
     }
 
-    public function getScene(): ?scene
+    public function getScene(): ?Scene
     {
         return $this->scene;
     }
 
-    public function setScene(?scene $scene): self
+    public function setScene(?Scene $scene): self
     {
         $this->scene = $scene;
 
         return $this;
     }
 
-    public function getTextContent(): ?string
-    {
-        return $this->text_content;
-    }
-
-    public function setTextContent(?string $text_content): self
-    {
-        $this->text_content = $text_content;
-
-        return $this;
-    }
-
-    public function getAudioContent()
+    public function getAudioContent(): ?string
     {
         return $this->audio_content;
     }
 
-    public function setAudioContent($audio_content): self
+    public function setAudioContent(?string $audio_content): self
     {
         $this->audio_content = $audio_content;
 
@@ -110,6 +98,18 @@ class Cell
     public function setPublished(bool $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getText_Content(): ?string
+    {
+        return $this->text_content;
+    }
+
+    public function setText_Content(?string $text_content): self
+    {
+        $this->text_content = $text_content;
 
         return $this;
     }

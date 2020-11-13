@@ -6,10 +6,10 @@
 
     <nav class="navigation__nav">
         <ul class="navigation__list">
-            <li class="navigation__item"><a href="#" class="navigation__link">Home</a></li>
-            <li class="navigation__item"><a href="#" class="navigation__link">Les manuscrits</a></li>
-            {# <li class="navigation__item"><a href="#" class="navigation__link">Mes manuscrits</a></li> #}
-            {# <li class="navigation__item"><a href="#" class="navigation__link">Les auteurs</a></li> #}
+            <li class="navigation__item"><a href="{{ path('/home') }}" class="navigation__link">Home</a></li>
+            <li class="navigation__item"><a href="{{ path('/archives_manucripts') }}" class="navigation__link">Les manuscrits</a></li>
+            {# <li class="navigation__item"><a href="{{ path('/archives_my_manuscripts') }}" class="navigation__link">Mes manuscrits</a></li> #}
+            <li class="navigation__item"><a href="{{ path('/archives_authors') }}" class="navigation__link">Les auteurs</a></li>
         </ul>
     </nav>
 

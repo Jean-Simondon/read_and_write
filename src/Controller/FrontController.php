@@ -20,9 +20,9 @@ use App\Repository\AuthorRepository;
 class FrontController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="/home")
      */
-    public function index()
+    public function index2()
     {
         return $this->render('pages/home.html.twig', [
             'title' => 'HomePage',

@@ -1,0 +1,102 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+
+    <header class="header">
+        <div class="heading-primary">
+            <h1 class="heading-primary--main">{{ manuscript.title }}</h1>
+        </div>
+    </header>
+
+    <section class="actes__section">
+        <div class="actes__banner">
+            <h2>Actes</h3>
+        </div>
+        <div class="card__list">
+            <div class="card__wrapper">
+                {% for act in manuscript.acts %}
+                    <div class="card" id="{{ act.id }}">
+                        <div class="card__title">
+                            <h3>Acte name</h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+       </div>
+    </section>
+
+    <section class="chapitre__section">
+        <div class="chapitres__banner">
+            <h2>Chapitre</h3>
+        </div>
+        <div class="card__list">
+            <div class="card__wrapper">
+                {% for act in manuscript.acts %}
+                    {% for chapter in act.chapters %}
+                        <div class="card">
+                            <div class="card__title">
+                                <h3>Chapter name</h3>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="section__scenes">
+        <div class="scenes__banner">
+            <h3>Scene</h3>
+        </div>
+        <div class="card__list">
+            <div class="card__wrapper">
+                {% for act in manuscript.acts %}
+                    {% for chapter in act.chapters %}
+                        {% for scene in chapter.scenes %}
+                            <div class="card">
+                                <div class="card__title">
+                                    <p>Scene name</p>
+                                </div>                        
+                            </div>
+                        {% endfor %}
+                    {% endfor %}    
+                {% endfor %}    
+            </div>
+        </div>
+    </section>
+
+    <section class="section__cellules">
+        <div class="cellules__banner">
+            <h3>Cellules</h3>
+        </div>
+        <div class="cellules__breadcrumb">
+            {% for act in manuscript.acts %}
+                {% for chapter in act.chapters %}
+                    {% for scene in chapter.scenes %}
+                        {% for cell in scene.cells %}
+                            <div class="cellules__breadcrumb__item"></div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="card__list">
+            <div class="card__wrapper">
+                {% for act in manuscript.acts %}
+                    {% for chapter in act.chapters %}
+                        {% for scene in chapter.scenes %}
+                            {% for cell in scene.cells %}
+                                <div class="card">
+                                    <div class="card__text">
+                                        <p>{{ cell.text_content }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
