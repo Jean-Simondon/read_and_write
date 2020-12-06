@@ -22,7 +22,7 @@ class FrontController extends AbstractController
     /**
      * @Route("/", name="/home")
      */
-    public function index2()
+    public function index()
     {
         return $this->render('pages/home.html.twig', [
             'title' => 'HomePage',

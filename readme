@@ -1,3 +1,11 @@
+// ----------------- TRAVAL QUOTIDIEN ----------------- :
+
+symfony server:start
+Lancer les serveur sur MAMP
+
+
+
+
 // ----------------- RECUPERATION ----------------- :
 
 composer install / composer update
@@ -35,9 +43,38 @@ cmd : php bin/console doctrine:database:create
 
 info : DATABASE_URL=mysql://root:root@localhost:3306/read_and_write?serverVersion=5.7 avec "localhost" et non pas "127.0.0.1"
 
-problème de connexion dans les controllers :
+
+// ----------------- BUG CONNU ----------------- :
+
+    Problème : de connexion dans les controllers qui ne connait pas mysql :
 https://blog.stevecohen.fr/mamp-symfony-sqlstatehy000-2002-no-such-file-or-directory/
-cmd : sudo ln -s /Applications/MAMP/tmp/mysql /var/mysql
-cmd : sudo unlink nom_du_lien
+    Solution : création d'un lien symbolique
+cmd :    
+    Popur supprimer de lien symbolique
+cmd : sudo unlink nom_du_lien             ou nom_du lien == /var/mysql
 
 // ----------------- QUESTION ----------------- :
+
+
+
+
+
+
+
+// ----------------- QUESTION ----------------- :
+
+À faire
+
+
+
+
+
+
+
+
+
+
+
+
+
+

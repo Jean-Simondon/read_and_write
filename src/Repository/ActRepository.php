@@ -19,10 +19,9 @@ class ActRepository extends ServiceEntityRepository
         parent::__construct($registry, Act::class);
     }
 
-    // /**
-    //  * @return Act[] Returns an array of Act objects
-    //  */
-    /*
+    /**
+    * @return Act[] Returns an array of Act objects
+    */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
@@ -34,9 +33,7 @@ class ActRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
     public function findOneBySomeField($value): ?Act
     {
         return $this->createQueryBuilder('a')
@@ -46,5 +43,4 @@ class ActRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
 }

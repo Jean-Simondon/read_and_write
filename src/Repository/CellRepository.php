@@ -19,10 +19,9 @@ class CellRepository extends ServiceEntityRepository
         parent::__construct($registry, Cell::class);
     }
 
-    // /**
-    //  * @return Cell[] Returns an array of Cell objects
-    //  */
-    /*
+    /**
+     * @return Cell[] Returns an array of Cell objects
+     */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
@@ -34,9 +33,7 @@ class CellRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
     public function findOneBySomeField($value): ?Cell
     {
         return $this->createQueryBuilder('c')
@@ -46,5 +43,5 @@ class CellRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

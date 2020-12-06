@@ -14,6 +14,15 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+
+    /**
+     * Path to image
+     */
+    .copyFiles({
+        from: './assets/images',
+        // to: 'images/'
+    })
+
     /*
      * ENTRY CONFIG
      *

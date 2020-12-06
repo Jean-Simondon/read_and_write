@@ -4,8 +4,8 @@ import './styles/main.scss';
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 import $ from 'jquery';
 
-import first from './scripts/first';
+import main from './scripts/main';
 
-$(document).ready(function() {
-    // $('body').prepend('<h1>'+first('jean')+'</h1>');
+$(document).ready(function($) {
+    main($);
 });

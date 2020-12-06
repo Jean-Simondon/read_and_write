@@ -8,18 +8,34 @@
         </div>
     </header>
 
-    <div class="card__wrapper">
-        {% for manuscript in manuscripts %}
-            <div class="card">
-                <div class="card__title">
-                    {{ manuscript.title }}
+    <div class="js-toggle-admin">
+        <div class="cover__wrapper">
+            {% for manuscript in manuscripts %}
+                <div class="cover" style="background-image: url('./build/{{ manuscript.cover }}">
+                    <div class="cover__title">
+                        {{ manuscript.title }}
+                    </div>
+                    <div class="cover__thumbnail">
+                    {# <img src="./build/{{ manuscript.cover }}"> #}
+                    {# <p>/{{ manuscript.cover }}</p> #}
+                    </div>
+                    <a class="cover__link" href="{{ path('/details_manuscript', { id: manuscript.id } ) }}">Detail</a>
                 </div>
-                <div class="card__thumbnail">
-                    <img src="{{ asset('img/cover.png') }}" alt="">
-                </div>
-                <a class="card__link" href="{{ path('/details_manuscript', { id: manuscript.id } ) }}">Detail</a>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
+
+    <div class="js-toggle-admin" style="display:none;">
+        {% for manuscript in manuscripts %}
+            {{ manuscript.title }}
+            <a class="cover__link" href="{{ path('/details_manuscript', { id: manuscript.id } ) }}">Detail</a>
+        {% endfor %}
+
+        <div>
+            <a class="" href="{{ path('manuscript_admin_create') }}">Créer un nouveau manuscript</a>
+        </div>
+    </div>
+
+    <button class="js-toggle-admin-button">Changer vers l'admin</button> 
 
 {% endblock %}

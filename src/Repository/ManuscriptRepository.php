@@ -19,10 +19,9 @@ class ManuscriptRepository extends ServiceEntityRepository
         parent::__construct($registry, Manuscript::class);
     }
 
-    // /**
-    //  * @return Manuscript[] Returns an array of Manuscript objects
-    //  */
-    /*
+    /**
+    * @return Manuscript[] Returns an array of Manuscript objects
+    */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('m')
@@ -34,9 +33,7 @@ class ManuscriptRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
     public function findOneBySomeField($value): ?Manuscript
     {
         return $this->createQueryBuilder('m')
@@ -46,5 +43,5 @@ class ManuscriptRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

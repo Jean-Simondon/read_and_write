@@ -51,6 +51,11 @@ class Manuscript
      */
     private $acts;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cover;
+
     public function __construct()
     {
         $this->acts = new ArrayCollection();
@@ -135,6 +140,18 @@ class Manuscript
                 $act->setManuscript(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): self
+    {
+        $this->cover = $cover;
 
         return $this;
     }

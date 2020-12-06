@@ -19,10 +19,9 @@ class ChapterRepository extends ServiceEntityRepository
         parent::__construct($registry, Chapter::class);
     }
 
-    // /**
-    //  * @return Chapter[] Returns an array of Chapter objects
-    //  */
-    /*
+    /**
+    * @return Chapter[] Returns an array of Chapter objects
+    */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
@@ -34,9 +33,7 @@ class ChapterRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
     public function findOneBySomeField($value): ?Chapter
     {
         return $this->createQueryBuilder('c')
@@ -46,5 +43,5 @@ class ChapterRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

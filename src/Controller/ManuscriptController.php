@@ -2,16 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-
+use App\Entity\Manuscript;
 use App\Repository\ManuscriptRepository;
+use App\Form\ManuscriptType;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Author;
-use App\Entity\Manuscript;
 use App\Entity\Act;
 use App\Entity\Chapter;
 use App\Entity\Scene;
@@ -75,4 +77,35 @@ class ManuscriptController extends AbstractController
             'title' => 'Mon Manuscrit',
         ]);
     }
+
+    /**
+     * @Route("/manuscript/create", name="manuscript_admin_create")
+     */
+    public function createManuscript(Request $request): Response
+    {
+        $manuscript = new Manuscript();
+
+        $form = $this->createForm(ManuscriptType::class, $manuscript);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $manuscript = $form->getData();
+            
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($manuscript);
+            $entityManager->flush();
+    
+            $this->addFlash('success', 'Un nouveau manuscrit, un nouveau projet');
+
+            return $this->redirectToRoute('manuscript_success');
+        }
+
+        return $this->render('manuscript/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
+    }
+
 }

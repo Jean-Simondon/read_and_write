@@ -37,6 +37,7 @@ class ManuscriptFixtures extends Fixture
                 $manuscript->setTitle('manuscrit '.$j);
                 $manuscript->setAbstract('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, fugiat. Sed deserunt sapiente veniam ut, molestiae, omnis accusamus nulla est perferendis ipsa corrupti repudiandae adipisci porro ad, blanditiis doloribus? Incidunt!');
                 $manuscript->setType('science-fiction');
+                $manuscript->setCover('livre_'.$j.'png');
 
                 $manager->persist($manuscript);
 

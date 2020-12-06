@@ -19,10 +19,9 @@ class SceneRepository extends ServiceEntityRepository
         parent::__construct($registry, Scene::class);
     }
 
-    // /**
-    //  * @return Scene[] Returns an array of Scene objects
-    //  */
-    /*
+    /**
+     * @return Scene[] Returns an array of Scene objects
+     */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('s')
@@ -34,9 +33,7 @@ class SceneRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
-    /*
     public function findOneBySomeField($value): ?Scene
     {
         return $this->createQueryBuilder('s')
@@ -46,5 +43,5 @@ class SceneRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }
