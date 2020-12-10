@@ -22,8 +22,7 @@ class ManuscriptType extends AbstractType
             ->add('cover')
             ->add('author', EntityType::class, 
             [
-                'class' => Author::class,
-                'required' => false
+                'class' => Author::class
             ])
         ;
     }

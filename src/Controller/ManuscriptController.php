@@ -56,7 +56,7 @@ class ManuscriptController extends AbstractController
     }
 
     /**
-     * @Route("/details_manuscript/{id}", name="/details_manuscript")
+     * @Route("/details_manuscript/{id}", name="details_manuscript")
      */
     public function details_manuscript($id, ManuscriptRepository $manuscriptRepository)
     {
@@ -107,5 +107,48 @@ class ManuscriptController extends AbstractController
         ]);
 
     }
+
+    /**
+     * 
+     * @Route("delete/{id}", name="manuscript_delete")
+     */
+    public function delete(Request $request, Manuscript $manuscript): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($manuscript);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('liste_manuscripts');
+    }
+
+    /**
+     * 
+     * @Route("manuscript/edit/{id}", name="update_manuscript")
+     */
+    public function update(Request $request, Manuscript $manuscript): Response
+    {
+        $form = $this->createForm(ManuscriptType::class, $manuscript);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $manuscript = $form->getData();
+            
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($manuscript);
+            $entityManager->flush();
+    
+            $this->addFlash('success', 'Votre manuscrit a bien été mis à jour');
+
+            return $this->redirectToRoute('manuscript_success');
+        }
+
+        return $this->render('manuscript/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 
 }

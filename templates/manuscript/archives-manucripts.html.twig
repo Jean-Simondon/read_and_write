@@ -19,7 +19,8 @@
                     {# <img src="./build/{{ manuscript.cover }}"> #}
                     {# <p>/{{ manuscript.cover }}</p> #}
                     </div>
-                    <a class="cover__link" href="{{ path('/details_manuscript', { id: manuscript.id } ) }}">Detail</a>
+                    <a class="cover__link" href="{{ path('details_manuscript', { id: manuscript.id } ) }}">Detail</a>
+                    <a>
                 </div>
             {% endfor %}
         </div>
@@ -28,7 +29,9 @@
     <div class="js-toggle-admin" style="display:none;">
         {% for manuscript in manuscripts %}
             {{ manuscript.title }}
-            <a class="cover__link" href="{{ path('/details_manuscript', { id: manuscript.id } ) }}">Detail</a>
+            <a href="{{ path('details_manuscript', { id: manuscript.id } ) }}"><button>Detail</button></a>
+            <a href="{{ path('manuscript_delete', {id: manuscript.id}) }}"><button>Remove</button></a>
+            <a href="{{ path('update_manuscript', {id: manuscript.id}) }}"><button>Update</button></a>
         {% endfor %}
 
         <div>
