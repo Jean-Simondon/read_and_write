@@ -31,19 +31,19 @@ class Author
     private $login;
 
     /**
-     * @ORM\Column(type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true, name="last_name")
      */
-    private $last_name;
+    private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true, name="first_name")
      */
-    private $first_name;
+    private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true, name="pen_name")
      */
-    private $pen_name;
+    private $penName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -82,36 +82,36 @@ class Author
         return $this;
     }
 
-    public function getLast_Name(): ?string
+    public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLast_Name(?string $last_name): self
+    public function setLastName(?string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getFirst_Name(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirst_Name(?string $first_name): self
+    public function setFirstName(?string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getPen_Name(): ?string
+    public function getPenName(): ?string
     {
-        return $this->pen_name;
+        return $this->penName;
     }
 
-    public function setPen_Name(?string $pen_name): self
+    public function setPenName(?string $pen_name): self
     {
         $this->pen_name = $pen_name;
 
@@ -174,7 +174,9 @@ class Author
 
     public function __toString()
     {
-        return $this->getPen_Name();
+        return $this->getPenName();
     }
     
+
+
 }

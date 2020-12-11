@@ -107,7 +107,7 @@ class ManuscriptController extends AbstractController
         ]);
 
     }
-
+    
     /**
      * 
      * @Route("delete/{id}", name="manuscript_delete")

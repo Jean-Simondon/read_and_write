@@ -47,7 +47,7 @@ class Manuscript
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity=Act::class, mappedBy="manuscript")
+     * @ORM\OneToMany(targetEntity=Act::class, cascade={"remove"}, mappedBy="manuscript")
      */
     private $acts;
 
