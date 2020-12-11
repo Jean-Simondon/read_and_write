@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Author;
@@ -80,6 +82,7 @@ class ManuscriptController extends AbstractController
 
     /**
      * @Route("/manuscript/create", name="manuscript_admin_create")
+     * @isGranted("ROLE_ADMIN")
      */
     public function createManuscript(Request $request): Response
     {
@@ -111,6 +114,7 @@ class ManuscriptController extends AbstractController
     /**
      * 
      * @Route("delete/{id}", name="manuscript_delete")
+     * @isGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Manuscript $manuscript): Response
     {
@@ -124,6 +128,7 @@ class ManuscriptController extends AbstractController
     /**
      * 
      * @Route("manuscript/edit/{id}", name="update_manuscript")
+     * @isGranted("ROLE_ADMIN")
      */
     public function update(Request $request, Manuscript $manuscript): Response
     {
