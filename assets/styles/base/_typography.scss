@@ -41,3 +41,35 @@ body {
     }
 
 }
+
+.title {
+    color: $color-yellow;
+    margin-bottom: 4rem;
+
+    &--main {
+        display:block;
+        font-style: italic;
+        font-size: 15rem;
+        font-weight: 900;
+        letter-spacing: 2rem;
+        text-align: center;
+        text-shadow: 0 2rem 2rem rgba($color-black, 1);
+
+        animation: moveInLeft ease-out 1s 4s;
+        animation-fill-mode: backwards;
+    }
+
+    &--sub {
+        display:block;
+        font-size: 4rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        margin-top: -7rem;
+        text-shadow: 0 2rem 2rem rgba($color-black, 1);
+
+        animation: moveInLeft ease-out 1s 5s;
+        animation-fill-mode: backwards;
+    }
+
+}

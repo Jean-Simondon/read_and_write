@@ -1,13 +1,133 @@
-{% extends 'layout/base.html.twig' %}
+{% extends 'layout/immersion.html.twig' %}
 
 {% block content %}
 
-    <header class="header">
-        <div class="heading-primary">
-            <h1 class="heading-primary--main">{{ manuscript.title }}</h1>
-        </div>
-    </header>
+    {# {{ dump(manuscript) }} #}
 
+    <section class="section section-cover parallax" style="background-image: url('../build/cover/{{ manuscript.cover }}">
+        <div class="section-cover__title-box">
+            <h1 class="title">
+                <span class="title--main">{{ manuscript.title }}</span>
+                <span class="title--sub">L'effet de Surplomb</span>
+            </h1>
+            <a href="#" class="btn btn--primary btn--yellow btn--animated-b">Commencer la lecture</a>
+        </div>
+    </section>
+
+    <section class="section section-fourth-cover">
+        <h2 class="">4eme de couverture</h2>
+        <p class="">
+            Les abondantes ressources du système solaire soutiendraient aisément une population de centaines de milliards d’individus.
+            Les mégacorporations ont bien compris la fertilité du terrain et la commercialisation de l’espace vit une croissance folle.
+            Stations spatiales, avant-postes et chantiers spatiaux sont plus nombreux chaque année. Pour assurer leurs activités, elles recrutent.
+            Leurs employés : ces aventuriers modernes, les astronautes.
+            Haruka atterrit à Taïwan pour rejoindre l’école d’astronautique avec la ferme intention de n’en repartir qu’une fois la formation d’élève astronaute terminé et seulement pour rejoindre l’espace en tant qu’astronaute professionnelle.
+            Sans jamais avoir quitté la Terre, Haruka est souvent dans la lune, trop souvent pour respecter cette dévotion que demande la formation, et ce n’est pas son tigre pédagogique qui mettra définitivement fin à cette tendance ?! Si en plus s’en mêle un savant fou, aux expériences douteuses et un monde où la cyberculture pop use de la réalité augmentée pour transformer, par le surréalisme, les lieux et les gens, alors…
+            Mais cette tendance à être dans la lune pourrait bien être son véritable moyen d’accès à l’espace.
+        </p>
+    </section>
+
+    <section class="section section-meta-story">
+        <h2>Un brin de méta-histoire</h2>
+        <p>
+            Alors que je construisais ma yourte, alors initialement prévu pour me loger de manière économique entre deux voyages, j'ai doucement glissé vers l'écriture d'un roman de science-fiction.
+            Petit à petit, je me suis retrouvé impliqué dans ce projet qui s'est révélé bien plus long et bien plus prenant que ce que j'avais pu imaginer. Sur plusieurs années, j'ai réalisé un travail d'études des sciences et d'imagination d'un univers entier à dessein d'y placer une intrigue de science-fiction.
+            J'ai accordé plusieurs années à ce travail, et à force de travail, je suis parvenu jusqu'au support du livre, de sa mise en page, et de sa place dans quelques rayons de librairie montpelliéraine.
+            Aujourd'hui, d'autres projets m'occupent, mais écrire la suite me démange tout comme reprendre ce premier tome pour donner un jet plus aboutit.
+        </p>
+    </section>
+
+    <section class="section-breadcrumb">
+        <div class="breadcrumb">
+            <div class="breadcrumb__line breadcrumb__act">
+                <img class="breadcrumb__svg" src="{{ asset('./build/svg/acte.svg') }}">
+                <ul class="breadcrumb__list">
+                    <li><p class="breadcrumb__item">Acte 1 /</p></li>
+                    <li><p class="breadcrumb__item">Acte 3 /</p></li>
+                    <li><p class="breadcrumb__item">Acte 2 /</p></li>
+                    <li><p class="breadcrumb__item">Acte 4 /</p></li>
+                    <li><p class="breadcrumb__item">Acte 5 /</p></li>
+                </ul>
+            </div>
+            <div class="breadcrumb__line breadcrumb__chapter">
+                <img class="breadcrumb__svg" src="{{ asset('./build/svg/chapter.svg') }}">
+                <ul class="breadcrumb__list">
+                    <li><p class="breadcrumb__item">Chapitre 1 /</p></li>
+                    <li><p class="breadcrumb__item">Chapitre 3 /</p></li>
+                    <li><p class="breadcrumb__item">Chapitre 2 /</p></li>
+                    <li><p class="breadcrumb__item">Chapitre 4 /</p></li>
+                    <li><p class="breadcrumb__item">Chapitre 5 /</p></li>
+                </ul>
+            </div>
+            <div class="breadcrumb__line breadcrumb__scene">
+                <img class="breadcrumb__svg" src="{{ asset('./build/svg/scene.svg') }}">
+                <ul class="breadcrumb__list">
+                    <li><p class="breadcrumb__item">Scene 1 /</p></li>
+                    <li><p class="breadcrumb__item">Scene 3 /</p></li>
+                    <li><p class="breadcrumb__item">Scene 2 /</p></li>
+                    <li><p class="breadcrumb__item">Scene 4 /</p></li>
+                    <li><p class="breadcrumb__item">Scene 5 /</p></li>
+                </ul>
+            </div>
+            <div class="breadcrumb__line breadcrumb__cell">
+                <img class="breadcrumb__svg" src="{{ asset('./build/svg/cell.svg') }}">
+            </div>
+        </div>
+    </section>
+
+    <section class="section-horizontal-reader">
+
+    </section>
+
+    {# <section class="section-reader">
+
+        <div class="summary">
+
+            <div class="summary__chapter-box">
+                <button class="summary__chapter btn btn--secondary btn--white" id="1">Chapter 1</button>
+                <button class="summary__chapter btn btn--secondary btn--white" id="2">Chapter 2</button>
+                <button class="summary__chapter btn btn--secondary btn--white" id="3">Chapter 3</button>
+                <button class="summary__chapter btn btn--secondary btn--white" id="4">Chapter 4</button>
+                <button class="summary__chapter btn btn--secondary btn--white" id="5">Chapter 5</button>
+                <button class="summary__chapter btn btn--secondary btn--white" id="6">Chapter 6</button>
+            </div>
+
+            <div class="summary__scene-box">
+                <button class="summary__scene btn btn--tertiary btn--white" id="1">Scene 1</button>
+                <button class="summary__scene btn btn--tertiary btn--white" id="2">Scene 2</button>
+                <button class="summary__scene btn btn--tertiary btn--white" id="3">Scene 3</button>
+                <button class="summary__scene btn btn--tertiary btn--white" id="4">Scene 4</button>
+                <button class="summary__scene btn btn--tertiary btn--white" id="5">Scene 5</button>
+                <button class="summary__scene btn btn--tertiary btn--white" id="6">Scene 6</button>
+            </div>
+
+            <div class="summary__progress-bar-box">
+                <progress class="summary__progress-bar" id="file" max="100" value="10"></progress>
+            </div>
+
+        </div>
+
+        <div class="book__box">
+            <div class="book">
+                <div class="book__chapter">
+                    <div class="book_scene">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section> #}
+
+
+
+    {# <section class="section-vertical-reader">
+
+    </section> #}
+
+
+
+
+{# 
     <section class="actes__section">
         <div class="actes__banner">
             <h2>Actes</h3>
@@ -97,6 +217,6 @@
                 {% endfor %}
             </div>
         </div>
-    </section>
+    </section> #}
 
 {% endblock %}

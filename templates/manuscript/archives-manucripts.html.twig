@@ -10,8 +10,8 @@
 
     <div class="js-toggle-admin">
         <div class="cover__wrapper">
-            {% for manuscript in manuscripts %}
-                <div class="cover" style="background-image: url('./build/{{ manuscript.cover }}">
+            {% for manuscript in manuscripts %}                
+                <div class="cover" style="background-image: url('./build/cover/{{ manuscript.cover }}">
                     <div class="cover__title">
                         {{ manuscript.title }}
                     </div>

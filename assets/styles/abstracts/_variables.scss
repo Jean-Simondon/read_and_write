@@ -1,21 +1,33 @@
-// COLORS
+// GREY
 $color-grey-light-1: #f7f7f7;
 $color-grey-light-2: #eee;
-
+$color-grey: #808080;
 $color-grey-dark: #777;
 $color-grey-dark-2: #999;
 $color-grey-dark-3: #333;
 
+// BLACK AND WHITE
 $color-white: #fff;
 $color-black: #000;
+
+// GREEN
+$color-green: #55c57a;
+$color-green-light: #7ed56f;
+$color-green-dark: #28b485;
+
+// YELLOW / ORANGE / RED
+$color-yellow: #ffcc00;
+$color-orange-light: #ffb900;
+$color-orange-dark: #ff7730;
+
+// BLUE / VIOLET
+$color-blue-light: #2998ff;
+$color-blue-dark: #5643fa;
+
+
+
+
 
 
 // FONT
 $default-font-size: 1.6rem;
-
-
-// GRID
-$grid-width: 114rem;
-$gutter-vertical: 8rem;
-$gutter-vertical-small: 6rem;
-$gutter-horizontal: 6rem;

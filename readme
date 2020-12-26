@@ -1,10 +1,12 @@
 // ----------------- TRAVAL QUOTIDIEN ----------------- :
 
-symfony server:start
 Lancer les serveur sur MAMP
+puis
+symfony server:start
 
+// ----------------- TRAVAIIL SUR LES ASSETS ----------------- :
 
-
+npm run dev || npm run watch
 
 // ----------------- RECUPERATION ----------------- :
 
@@ -49,7 +51,7 @@ info : DATABASE_URL=mysql://root:root@localhost:3306/read_and_write?serverVersio
     Problème : de connexion dans les controllers qui ne connait pas mysql :
 https://blog.stevecohen.fr/mamp-symfony-sqlstatehy000-2002-no-such-file-or-directory/
     Solution : création d'un lien symbolique
-cmd :    
+cmd :    sudo ln -s /Applications/MAMP/tmp/mysql /var/mysql
     Popur supprimer de lien symbolique
 cmd : sudo unlink nom_du_lien             ou nom_du lien == /var/mysql
 
