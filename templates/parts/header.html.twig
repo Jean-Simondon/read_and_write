@@ -1,26 +1,21 @@
 <div class="navigation">
 
-    {# <div class="navigation__logo-box">
-        <img src="" alt="Logo" class="navigation__logo">
-    </div> #}
-
     <nav class="navigation__nav">
         <ul class="navigation__list">
-            <li class="navigation__item"><a href="{{ path('/home') }}" class="navigation__link">Home</a></li>
-            <li class="navigation__item"><a href="{{ path('/archives_manucripts') }}" class="navigation__link">Les manuscrits</a></li>
-            {# <li class="navigation__item"><a href="{{ path('/archives_my_manuscripts') }}" class="navigation__link">Mes manuscrits</a></li> #}
-            <li class="navigation__item"><a href="{{ path('/archives_authors') }}" class="navigation__link">Les auteurs</a></li>
+            <li class="navigation__item"><a href="{{ path('home') }}" class="navigation__link">Accueil</a></li>
             {% if app.user %}
+                <li class="navigation__item"><a href="{{ path('archives_my_manuscripts') }}" class="navigation__link">Mes manuscrits</a></li>
+            {% endif %}
+            <li class="navigation__item"><a href="{{ path('archives_manucripts') }}" class="navigation__link">Manuscrits</a></li>
+            <li class="navigation__item"><a href="{{ path('archives_authors') }}" class="navigation__link">Les auteurs</a></li>
+            {% if app.user %}
+                <li class="navigation__item"><a href="{{ path('app_update') }}" class="navigation__link">Profil [{{ app.user.username }}]</a></li>
                 <li class="navigation__item"><a href="{{ path('app_logout') }}" class="navigation__link">Log out</a></li>
             {% else %}
-                <li class="navigation__item"><a href="{{ path('app_login') }}" class="navigation__link">Sign up</a></li>
+                <li class="navigation__item"><a href="{{ path('app_login') }}" class="navigation__link">Log in</a></li>
+                <li class="navigation__item"><a href="{{ path('app_register') }}" class="navigation__link">Sign up</a></li>
             {% endif %}
-            <li class="navigation__item"><a href="{{ path('app_register') }}" class="navigation__link">Sign in</a></li>
         </ul>
     </nav>
-
-    {# Search #}
-
-    {# Login / Sign in #}
 
 </div>

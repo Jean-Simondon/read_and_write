@@ -5,8 +5,19 @@ import './styles/main.scss';
 import $ from 'jquery';
 global.$ = global.jQuery = $;
 import main from './scripts/main';
-import parallax from './scripts/parallax/parallax.min.js';
+import Editor from './scripts/editor';
+import Summary from './scripts/summary';
 
 $(document).ready(function($) {
+
     main($);
+
+    let summ = new Summary();
+    let editor = new Editor(summ);
+    
+    summ.editor = editor;
+
+    editor.init();
+    summ.listeningAct();
+
 });

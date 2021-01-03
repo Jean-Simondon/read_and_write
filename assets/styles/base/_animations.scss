@@ -14,11 +14,9 @@
         opacity: 0;
         transform: translateX(-10rem);
     }
-
     80% {
         transform: translateX(1rem);
     }
-
     100% {
         opacity: 1;
         transform: translate(0);
@@ -30,11 +28,9 @@
         opacity: 0;
         transform: translateX(10rem);
     }
-
     80% {
         transform: translateX(-1rem);
     }
-
     100% {
         opacity: 1;
         transform: translate(0);
@@ -46,7 +42,6 @@
         opacity: 0;
         transform: translateY(3rem);
     }
-
     100% {
         opacity: 1;
         transform: translate(0);
@@ -58,7 +53,21 @@
         opacity: 0;
         transform: translateY(-3rem);
     }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
 
+@keyframes appearAfter {
+    0% {
+        opacity: 0;
+        transform: translateY(-10rem);
+    }
+    90% {
+        opacity: 0;
+        transform: translateY(-10rem);
+    }
     100% {
         opacity: 1;
         transform: translate(0);

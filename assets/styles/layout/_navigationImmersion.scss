@@ -1,6 +1,28 @@
-.navigation {
-    width: 100%;
-    background-color: $color-grey;
+.navigation.immersion {
+    width: 75%;
+
+    z-index: 100;
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+
+    border-radius: 8px;
+    background-color: rgba($color-white, .4);
+    color: $color-black;
+
+    animation: appearAfter ease-out 10s;
+
+    &__logo-box {
+        display: none,
+    }
+
+    &__logo {
+        display: none,
+    }
+
+    &__nav {
+
+    }
 
     &__list {
         list-style: none;
@@ -20,14 +42,14 @@
             font-size: 3rem;
             font-weight: 300;
             padding: 1rem 2rem;
-            color: $color-white;
+            color: $color-black;
             text-decoration: none;
         }
 
         &:hover,
         &:active {
             background-position: 100%;
-            color: $color-grey-dark-2;
+            color: $color-black;
         }
 
         // text-decoration: none;

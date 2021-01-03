@@ -8,37 +8,51 @@
         </div>
     </header>
 
-    <div class="js-toggle-admin">
+    <div class="js-toggle-admin shell">
         <div class="cover__wrapper">
-            {% for manuscript in manuscripts %}                
+            {% for manuscript in manuscripts %}
                 <div class="cover" style="background-image: url('./build/cover/{{ manuscript.cover }}">
-                    <div class="cover__title">
-                        {{ manuscript.title }}
-                    </div>
-                    <div class="cover__thumbnail">
-                    {# <img src="./build/{{ manuscript.cover }}"> #}
-                    {# <p>/{{ manuscript.cover }}</p> #}
-                    </div>
-                    <a class="cover__link" href="{{ path('details_manuscript', { id: manuscript.id } ) }}">Detail</a>
-                    <a>
+                    <a class="cover__link" href="{{ path('details_manuscript', { id: manuscript.id } ) }}">
+                        <div class="cover__title">
+                            {{ manuscript.title }}
+                        </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>
     </div>
 
     <div class="js-toggle-admin" style="display:none;">
-        {% for manuscript in manuscripts %}
-            {{ manuscript.title }}
-            <a href="{{ path('details_manuscript', { id: manuscript.id } ) }}"><button>Detail</button></a>
-            <a href="{{ path('manuscript_delete', {id: manuscript.id}) }}"><button>Remove</button></a>
-            <a href="{{ path('update_manuscript', {id: manuscript.id}) }}"><button>Update</button></a>
-        {% endfor %}
 
-        <div>
-            <a class="" href="{{ path('manuscript_admin_create') }}"><button>Créer un nouveau manuscript</button></a>
+        <div class="admin-manuscrit-container shell">
+            {% for manuscript in manuscripts %}
+                <div class="row">
+                    <h4>{{ manuscript.title }}</h4>
+                    <div class="row__btn-liste">
+                        <a href="{{ path('details_manuscript', { id: manuscript.id }) }}" class="btn btn--admin btn--white">
+                            <p>Detail</p>
+                        </a>
+                        <a href="{{ path('update_manuscript', { id: manuscript.id }) }}" class="btn btn--admin btn--white">
+                            <p>Update</p>
+                        </a>
+                        <a href="{{ path('manuscript_delete', { id: manuscript.id }) }}" class="btn btn--admin btn--white">
+                            <p>Remove</p>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
+
+        <div class="section section-create">
+            <a href="{{ path('manuscript_create') }}" class="btn btn--admin btn--grey">
+                <p>Nouveau Manuscrit</p>
+            </a>
+        </div>
+    
     </div>
 
-    <button class="js-toggle-admin-button">Changer vers l'admin</button> 
+    {% if app.user and is_granted('ROLE_ADMIN') %}
+        <button class="js-toggle-admin-button btn btn--admin btn--grey">Changer vers l'admin</button> 
+    {% endif %}
 
 {% endblock %}

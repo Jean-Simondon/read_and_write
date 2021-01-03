@@ -12,7 +12,7 @@ use App\Repository\AuthorRepository;
 class AuthorController extends AbstractController
 {
     /**
-     * @Route("/archives_authors", name="/archives_authors")
+     * @Route("/archives_authors", name="archives_authors")
      */
     public function archives_authors(AuthorRepository $authorRepository)
     {
@@ -25,7 +25,7 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/details_author/{id}", name="/details_author")
+     * @Route("/details_author/{id}", name="details_author")
      */
     public function details_author($id, AuthorRepository $authorRepository)
     {

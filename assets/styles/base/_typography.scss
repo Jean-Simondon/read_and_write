@@ -54,6 +54,7 @@ body {
         letter-spacing: 2rem;
         text-align: center;
         text-shadow: 0 2rem 2rem rgba($color-black, 1);
+        white-space: nowrap;
 
         animation: moveInLeft ease-out 1s 4s;
         animation-fill-mode: backwards;
@@ -67,6 +68,7 @@ body {
         text-align: right;
         margin-top: -7rem;
         text-shadow: 0 2rem 2rem rgba($color-black, 1);
+        white-space: nowrap;
 
         animation: moveInLeft ease-out 1s 5s;
         animation-fill-mode: backwards;

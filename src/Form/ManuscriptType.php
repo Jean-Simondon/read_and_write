@@ -22,13 +22,14 @@ class ManuscriptType extends AbstractType
                 'label' => 'Titre'
             ])
             ->add('type', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'genre'
             ])
             ->add('cover', TextType::class, [
                 'label' => 'Image de couverture'
             ])
             ->add('author', EntityType::class, 
             [
+                'label' => 'Nom de plume pour ce manuscrit',
                 'class' => Author::class,
                 'choice_label' => 'pen_name'
             ])

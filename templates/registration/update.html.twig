@@ -1,0 +1,39 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+
+    <title>Modification de vos données personnelles</title>
+
+    {% block body %}
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
+
+        <h1>Update</h1>
+
+        {{ form_start(updateForm) }}
+        {{ form_row(updateForm.username) }}
+        {{ form_row(updateForm.email) }}
+        {{ form_row(updateForm.FirstName) }}
+        {{ form_row(updateForm.LastName) }}
+
+            {# {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }} #}
+        <button type="submit" class="btn">Save</button>
+
+        {{ form_end(updateForm) }}
+
+
+    {% endblock %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+

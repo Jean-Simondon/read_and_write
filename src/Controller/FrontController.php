@@ -20,7 +20,7 @@ use App\Repository\AuthorRepository;
 class FrontController extends AbstractController
 {
     /**
-     * @Route("/", name="/home")
+     * @Route("/", name="home")
      */
     public function index()
     {

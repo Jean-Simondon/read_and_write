@@ -8,20 +8,22 @@
         </div>
     </header>
 
-    <div class="card__wrapper">
-        {% for author in authors %}
-            <div class="card">
-                <div class="card__title">
-                    {{ author.penName }}
-                    <br>
-                    {{ author.id }}
+    <div class="shell">
+        <div class="card__wrapper">
+            {% for author in authors %}
+                <div class="card">
+                    <div class="card__title">
+                        {{ author.penName }}
+                        <br>
+                        {{ author.id }}
+                    </div>
+                    <div class="card__thumbnail">
+                        <img src="{{ asset('img/cover.png') }}" alt="">
+                    </div>
+                    <a class="card__link" href="{{ path('archives_my_manuscripts', { id: author.id } ) }}">Manuscrits</a>
                 </div>
-                <div class="card__thumbnail">
-                    <img src="{{ asset('img/cover.png') }}" alt="">
-                </div>
-                <a class="card__link" href="{{ path('/archives_my_manuscripts', { id: author.id } ) }}">Manuscrits</a>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

@@ -1,132 +1,321 @@
-class book {
+export default class Summary {
 
-	constructor() {
+    constructor()
+    {
+        this.currentManuscript = $('body').data('currentManuscript');
+        this.currentAct = undefined;
         this.currentChapter = undefined;
-        this.sceneNumber = undefined;
         this.currentScene = undefined;
+        this.sceneNumber = undefined;
         this.cells = undefined;
         this.cellNumber = undefined;
-        emptyElement(document.querySelector(".summary__scene-box"));
-	}
+    }
 
-listeningChapter() {
-    let self = this;
-    let chapter = document.querySelectorAll(".summary__chapter");
-    chapter.forEach(element =>
-        element.addEventListener("click", function() {
-            self.currentChapter = element.id;
-            self.currentScene = undefined;
-            let reader = document.querySelector('.book_scene');
-            emptyElement(reader);
-            self.LoadChapterScene();
-    }));
-}
+    listeningAct()
+    {
+        let self = this;
+        $('.breadcrumb__item.act__item').each(function(index, el) {
+            $(el).on('click', function() {
+                self.deleteCurrentAct();
+                self.setCurrentAct(el);
+                self.deleteCurrentChapter();
+                self.deleteCurrentScene();
+                $('.breadcrumb__item.chapter__item').remove();
+                $('.breadcrumb__item.scene__item').remove();
+                $('.breadcrumb__item.mini-cell__item').remove();
+                $('.section-horizontal-reader .card__list .card__wrapper').empty();
+                self.loadChapters();
+            })
+        });
+    }
 
-// Callback au click sur un chapitre
-// On récupère le nombre de scène pour ce chapitre
-// On vide les scène, on en créer x nouvelles
-// On vide les cellules
-// On focus sur la première scène
-// et on remplie la première scène de ses cellules
-LoadChapterScene() {
-    let self = this;
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "/data/summary.json", true);
-    xhr.addEventListener('readystatechange', function() {
-        let chapters = JSON.parse(xhr.responseText);
-        self.sceneNumber = chapters[self.currentChapter]['scene'];
-        self.fillScene();
-    });
-    xhr.send(null);
-}
+    listeningOneAct(act)
+    {
+        console.log(act);
+        let self = this;
+        $(act).on('click', function() {
+            self.deleteCurrentAct();
+            self.setCurrentAct(act);
+            self.deleteCurrentChapter();
+            self.deleteCurrentScene();
+            $('.breadcrumb__item.chapter__item').remove();
+            $('.breadcrumb__item.scene__item').remove();
+            $('.breadcrumb__item.mini-cell__item').remove();
+            $('.section-horizontal-reader .card__list .card__wrapper').empty();
+            self.loadChapters();
+        })
+    }
 
-fillScene() {
-    let self = this;
-    let scene_box = document.querySelector(".summary__scene-box");
-    emptyElement(scene_box);
-    for(let i = 1; i <= self.sceneNumber; i++) {
-        let button = document.createElement('button');
-        button.classList.add('summary__scene');
-        button.classList.add('btn');
-        button.classList.add('btn--tertiary');
-        button.classList.add('btn--white');
-        button.setAttribute('id', i);
-        button.innerText = 'Scene ' + i;
-        scene_box.appendChild(button);
+    listeningChapter()
+    {
+        let self = this;
+        $('.breadcrumb__item.chapter__item').each(function(index, el) {
+            $(el).on('click', function() {
+                self.deleteCurrentChapter();
+                self.setCurrentChapter(el);
+                self.deleteCurrentScene();
+                $('.breadcrumb__item.scene__item').remove();
+                $('.breadcrumb__item.mini-cell__item').remove();
+                $('.section-horizontal-reader .card__list .card__wrapper').empty();
+                self.loadScenes();
+            })
+        });
+    }
+
+    listeningOneChapter(chapter)
+    {
+        let self = this;
+        $(chapter).on('click', function() {
+            self.deleteCurrentChapter();
+            self.setCurrentChapter(chapter);
+            self.deleteCurrentScene();
+            $('.breadcrumb__item.scene__item').remove();
+            $('.breadcrumb__item.mini-cell__item').remove();
+            $('.section-horizontal-reader .card__list .card__wrapper').empty();
+            self.loadScenes();
+        })
+    }
+
+    listeningScene()
+    {
+        let self = this;
+        $('.breadcrumb__item.scene__item').each(function(index, el) {
+            $(el).on('click', function() {
+                self.deleteCurrentScene();
+                self.setCurrentScene(el);
+                $('.breadcrumb__item.mini-cell__item').remove();
+                $('.section-horizontal-reader .card__list .card__wrapper').empty();
+                self.loadCells();
+            })
+        });
+    }
+
+    listeningOneScene(scene)
+    {
+        let self = this;
+        $(scene).on('click', function() {
+            self.deleteCurrentScene();
+            self.setCurrentScene(scene);
+            $('.breadcrumb__item.mini-cell__item').remove();
+            $('.section-horizontal-reader .card__list .card__wrapper').empty();
+            self.loadCells();
+        })
+    }
+
+    loadChapters()
+    {
+        let self = this;
+        $.ajax({
+            url: `${$('body').data('urlServer')}/manuscript/chapters/${self.currentManuscript}`,
+            method: 'POST',
+            data: {
+                currentAct: self.currentAct,
+            },
+            datatype: 'json',
+        }).done(function(data) {
+            self.fillChapter(data);
+            if(self.editor.isOn) {
+                self.editor.off('instant');
+                self.editor.on('instant');
+            }
+        });
+    }
+
+    loadScenes()
+    {
+        let self = this;
+        $.ajax({
+            url: `${$('body').data('urlServer')}/manuscript/scenes/${self.currentManuscript}`,
+            method: 'POST',
+            data: {
+                currentChapter: self.currentChapter,
+            },
+            datatype: 'json',
+        }).done(function(data) {
+            self.fillScene(data);
+            if(self.editor.isOn) {
+                self.editor.off('instant');
+                self.editor.on('instant');
+            }
+        });
+    }
+
+    loadCells()
+    {
+        let self = this;
+        $.ajax({
+            url: `${$('body').data('urlServer')}/manuscript/cells/${self.currentManuscript}`,
+            method: 'POST',
+            data: {
+                currentScene: self.currentScene,
+            },
+            datatype: 'json',
+        }).done(function(data) {
+            self.fillCell(data);
+            if(self.editor.isOn) {
+                self.editor.off('instant');
+                self.editor.on('instant');
+            }
+        });
+    }
+
+    fillChapter(data)
+    {
+        let self = this;
+        $('.breadcrumb__item.chapter__item').remove();
+        let html = '';
+        for (let i = 0; i < data.length; i++) {
+            html = `<div data-chapter-id="${ data[i].id }" class="breadcrumb__item chapter__item">
+                        <p data-chapter-id="${ data[i].id }" class="editable-off chapter-edit">${data[i].title}</p>
+                    </div>`;
+            $('.add_chapter').before(html);
+        }
+        self.listeningChapter();
+    }
+
+    fillScene(data)
+    {
+        let self = this;
+        $('.breadcrumb__item.scene__item').remove();
+        let html = '';
+        for (let i = 0; i < data.length; i++) {
+            html = `<div data-scene-id="${data[i].id}" class="breadcrumb__item scene__item">
+                        <p data-scene-id="${data[i].id}" class="editable-off scene-edit">${data[i].title}</p>
+                    </div>`;
+            $('.add_scene').before(html);
+        }
         self.listeningScene();
-        // plus qu'à appeler le chargement de la scène 1
-    }
-}
-
-// On place un évènement au click sur chacune des scènes 
-listeningScene() {
-    let self = this;
-    let scene = document.querySelectorAll('.summary__scene');
-    scene.forEach(element => {
-       element.addEventListener('click', function() {
-            self.currentScene = element.id;
-            self.pickScene();
-       })
-    });
-}
-
-// callback au clic sur une scène
-// Si la scène n'est pas en focus
-// On vide le lecteur de ses cellules
-// On reremplie le lecteur avec les cellules de la scène en question
-pickScene() {
-    let self = this;
-    let url = '/data/c' + self.currentChapter + 's' + self.currentScene + '.json';
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.addEventListener('readystatechange', function() {
-        self.cells = JSON.parse(xhr.responseText);
-        self.cellNumber = Object.keys(B.cells).length;
-        self.getSceneContent();
-    });
-    xhr.send(null);
-}
-
-// récupère le contenu d'une scène
-// remplie la scène avec les cellules récupéré
-getSceneContent() {
-    let self = this;
-    let reader = document.querySelector('.book_scene');
-    emptyElement(reader);
-    document.querySelector('.book').style.width = (self.cellNumber * 50) + 10 + "rem";
-    let count = 1;
-    for (const [key, value] of Object.entries(self.cells)) {
-        let page_main = document.createElement('div');
-        page_main.classList.add('book__page');
-        page_main.setAttribute('data-spy', '');
-        page_main.setAttribute('id', 'page_' + count);
-        count++;
-        let page_sub = document.createElement('div');
-        page_sub.classList.add('book__page--content');
-        page_sub.classList.add('book__page--action');
-        let text = document.createElement('p');
-        text.innerHTML = `${value}`;
-        reader.appendChild(page_main);
-        page_main.appendChild(page_sub);
-        page_sub.appendChild(text);
     }
 
+    fillCell(data)
+    {
+        let self = this;
+
+        let cardContainer = $('.section-horizontal-reader .card__list .card__wrapper')[0];
+
+        $('.breadcrumb__mini-cell').remove();
+        $(cardContainer).empty();
+
+        for (let i = 0; i < data.length; i++) {
+            $('.add_cell').before(`<div data-cell-id="${data[i].id}" class="breadcrumb__mini-cell mini-cell__item"></div>`);
+        }
+
+        let html = '';
+        for (let i = 0; i < data.length; i++) {
+            html = `<div class="card">
+                        <div class="card__text">
+                            <p data-cell-id="${data[i].id}" class="editable-off cell-edit">${data[i].text_content}</p>
+                        </div>
+                    </div>`;
+            $(cardContainer).append(html);
+        }
+    }
+
+    addAct()
+    {
+        let self = this;
+        $.ajax({
+            url: `${$('body').data('urlServer')}/manuscript/new_act/${self.currentManuscript}`,
+            method: 'POST',
+            data: {
+                currentAct: self.currentAct,
+            },
+            datatype: 'json',
+        }).done(function(data) {
+            console.log('Nouvel acte ajouté');
+            $('.add_act').prev().children().data("actId", data.id);
+        });
+    }
+
+    addChapter()
+    {
+        let self = this;
+        $.ajax({
+            url: `${$('body').data('urlServer')}/manuscript/new_chapter/${self.currentManuscript}`,
+            method: 'POST',
+            data: {
+                currentAct: self.currentAct,
+            },
+            datatype: 'json',
+        }).done(function(data) {
+            console.log('Nouveau chapitre ajouté');
+            $('.add_chapter').prev().children().data("chapterId", data.id);
+        });
+    }
+
+    addScene()
+    {
+        let self = this;
+        $.ajax({
+            url: `${$('body').data('urlServer')}/manuscript/new_scene/${self.currentManuscript}`,
+            method: 'POST',
+            data: {
+                currentChapter: self.currentChapter,
+            },
+            datatype: 'json',
+        }).done(function(data) {
+            console.log('Nouvelle scène ajoutée');
+            $('.add_scene').prev().children().data("sceneId", data.id);
+        });
+    }
+
+    addCell()
+    {
+        let self = this;
+        $.ajax({
+            url: `${$('body').data('urlServer')}/manuscript/new_cell/${self.currentManuscript}`,
+            method: 'POST',
+            data: {
+                currentScene: self.currentScene,
+            },
+            datatype: 'json',
+        }).done(function(data) {
+            console.log('Nouvelle cellule ajoutée');
+            $('.add_cell').prev().children().data("cellId", data.id);
+            $('.section-horizontal-reader .card__list .card__wrapper .card .cell-edit').last().data("cellId", data.id);
+        });
+    }
+
+    setCurrentAct(el)
+    {
+        let self = this;
+        self.currentAct = $(el).children().data('actId');
+        $(el).addClass("current");
+    }
+
+    deleteCurrentAct()
+    {
+        let self = this;
+        self.currentAct = undefined;
+        $('.breadcrumb__list.breadcrumb__list-act .current').removeClass("current");
+    }
+
+    setCurrentChapter(el)
+    {
+        let self = this;
+        self.currentChapter = $(el).children().data('chapterId');
+        $(el).addClass("current");
+    }
+
+    deleteCurrentChapter()
+    {
+        let self = this;
+        self.currentChapter = undefined;
+        $('.breadcrumb__list.breadcrumb__list-chapter .current').removeClass("current");
+    }
+
+    setCurrentScene(el)
+    {
+        let self = this;
+        self.currentScene = $(el).children().data('sceneId');
+        $(el).addClass("current");
+    }
+
+    deleteCurrentScene()
+    {
+        let self = this;
+        self.currentScene = undefined;
+        $('.breadcrumb__list.breadcrumb__list-scene .current').removeClass("current");
+    }
+
 }
-
-prog(w) {
-    var x = document.querySelector('.summary__progress-bar');
-    x.style.value = w;
-}
-
-}
-
-
-var B = new book();
-B.listeningChapter();
-
-
-let observer = new IntersectionObserver(function (observables) {
-
-}, {
-    threshold: [0.5]
-});

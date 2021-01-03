@@ -8,9 +8,6 @@
         display: inline-block;
         transition: all .2s;
         position: relative;
-        // padding: 1.5rem 4rem;
-        // border-radius: 10rem;
-        // font-size: $default-font-size;
         border: none;
         cursor: pointer;
         color: black;
@@ -63,7 +60,13 @@
     &--tertiary {
         padding: .2rem 1rem;
         border-radius: 3rem;
-        font-size: 1;
+        font-size: 1rem;
+    }
+
+    &--admin {
+        border-radius: 3px;
+        padding: 10px 30px;
+        font-size: 1rem;
     }
 
      // ANIMATION
@@ -107,6 +110,12 @@
             background-color: $color-yellow;
             color: $color-black;
         }
+    }
+
+    &--grey {
+        background-color: $color-grey;
+        $color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .8);
     }
 
 }

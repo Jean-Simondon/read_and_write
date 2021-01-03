@@ -4,9 +4,7 @@
 
 {% include 'parts/meta.html.twig' %}
 
-    <body class="immersion-layout">
-
-        {# {% include 'parts/header.html.twig' %} #}
+    <body class="immersion-layout" data-current-manuscript="{{ manuscript.id }}" data-url-server="{{ app.request.getSchemeAndHttpHost() }}">
 
         {% block content %} <h1>Contenu</h1> {% endblock %}
 

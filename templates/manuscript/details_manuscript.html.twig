@@ -2,21 +2,38 @@
 
 {% block content %}
 
-    {# {{ dump(manuscript) }} #}
+    {% include 'parts/headerImmersion.html.twig' %}
+
+    {% if (app.user and app.user.id == manuscript.author.user.id) %}
+        <div class="edit-switch">
+            <p>Editing is off / Switch</p>
+        </div>
+    {% endif %}
+
+    <div class="section-edit-popin" style="display:none;">
+        <div class="form">
+        <div class="close-popin btn--primary btn--white">Fermer</div>
+            <h4> Nouvelle valeur : </h4>
+            <textarea rows="20" cols="70"/></textarea>
+            <button class="save-popin-editor btn--primary btn--white">Sauvegarder</button>
+        </div>
+    </div>
 
     <section class="section section-cover parallax" style="background-image: url('../build/cover/{{ manuscript.cover }}">
+
         <div class="section-cover__title-box">
             <h1 class="title">
-                <span class="title--main">{{ manuscript.title }}</span>
-                <span class="title--sub">L'effet de Surplomb</span>
+                <span class="title--main editable-new">{{ manuscript.title }}</span>
+                <span class="title--sub editable-new">L'effet de Surplomb</span>
             </h1>
             <a href="#" class="btn btn--primary btn--yellow btn--animated-b">Commencer la lecture</a>
         </div>
     </section>
 
+    {# 4eme de couverture #}
     <section class="section section-fourth-cover">
         <h2 class="">4eme de couverture</h2>
-        <p class="">
+        <p class="editable-new 4eme-de-couv">
             Les abondantes ressources du système solaire soutiendraient aisément une population de centaines de milliards d’individus.
             Les mégacorporations ont bien compris la fertilité du terrain et la commercialisation de l’espace vit une croissance folle.
             Stations spatiales, avant-postes et chantiers spatiaux sont plus nombreux chaque année. Pour assurer leurs activités, elles recrutent.
@@ -27,9 +44,10 @@
         </p>
     </section>
 
+    {# Meta story #}
     <section class="section section-meta-story">
-        <h2>Un brin de méta-histoire</h2>
-        <p>
+        <h2 class="">Un brin de méta-histoire</h2>
+        <p class="editable-new meta-histoire">
             Alors que je construisais ma yourte, alors initialement prévu pour me loger de manière économique entre deux voyages, j'ai doucement glissé vers l'écriture d'un roman de science-fiction.
             Petit à petit, je me suis retrouvé impliqué dans ce projet qui s'est révélé bien plus long et bien plus prenant que ce que j'avais pu imaginer. Sur plusieurs années, j'ai réalisé un travail d'études des sciences et d'imagination d'un univers entier à dessein d'y placer une intrigue de science-fiction.
             J'ai accordé plusieurs années à ce travail, et à force de travail, je suis parvenu jusqu'au support du livre, de sa mise en page, et de sa place dans quelques rayons de librairie montpelliéraine.
@@ -37,186 +55,81 @@
         </p>
     </section>
 
+    {# Option de l'éditeur #}
+    <section class="section section-editor-option">
+        {# Liste de conseil #}
+        {# Liste Choisir les couleurs primaire et secondaire #}
+        {# Pour mieux naviguer dans l'arborescence du livre, désactivé le mode édition, ou bien cliquez sur le coin des étiquettes acte, chapitres etc... #}
+    </section>
+
     <section class="section-breadcrumb">
+
         <div class="breadcrumb">
-            <div class="breadcrumb__line breadcrumb__act">
+
+            {# Ligne des actes #}
+            <div class="breadcrumb__line act__line">
+                {# le tag svg en début de ligne  #}
                 <img class="breadcrumb__svg" src="{{ asset('./build/svg/acte.svg') }}">
-                <ul class="breadcrumb__list">
-                    <li><p class="breadcrumb__item">Acte 1 /</p></li>
-                    <li><p class="breadcrumb__item">Acte 3 /</p></li>
-                    <li><p class="breadcrumb__item">Acte 2 /</p></li>
-                    <li><p class="breadcrumb__item">Acte 4 /</p></li>
-                    <li><p class="breadcrumb__item">Acte 5 /</p></li>
-                </ul>
+                {# tous les actes sur une ligne #}
+                <div class="breadcrumb__list breadcrumb__list-act">
+                    {# Contiend la liste des actes #}
+                    {% for act in manuscript.acts %}
+                        <div class="breadcrumb__item act__item">
+                            <p data-act-id="{{ act.id }}" class="editable-new acte-edit">{{ act.title }}</p>
+                        </div>
+                    {% endfor %}
+                    {# Le bouton d'ajout d'acte en fin de ligne #}
+                    <div style="display:none;" class="add_act add_element breadcrumb__item">+</div>
+                </div>
             </div>
-            <div class="breadcrumb__line breadcrumb__chapter">
+
+            {# Ligne des chapitres #}
+            <div class="breadcrumb__line chapter__line">
+                {# le tag svg en début de ligne  #}
                 <img class="breadcrumb__svg" src="{{ asset('./build/svg/chapter.svg') }}">
-                <ul class="breadcrumb__list">
-                    <li><p class="breadcrumb__item">Chapitre 1 /</p></li>
-                    <li><p class="breadcrumb__item">Chapitre 3 /</p></li>
-                    <li><p class="breadcrumb__item">Chapitre 2 /</p></li>
-                    <li><p class="breadcrumb__item">Chapitre 4 /</p></li>
-                    <li><p class="breadcrumb__item">Chapitre 5 /</p></li>
-                </ul>
+                {# tous les chapitre sur une ligne #}
+                <div class="breadcrumb__list breadcrumb__list-chapter">
+                    {# Contiendra la liste des chapitres #}
+                    {# Le bouton d'ajout de chapitre en fin de ligne #}
+                    <div style="display:none;" class="add_chapter add_element breadcrumb__item">+</div>
+                </div>
             </div>
-            <div class="breadcrumb__line breadcrumb__scene">
+
+            {# Ligne des scene #}
+            <div class="breadcrumb__line scene__line">
+                {# le tag svg en début de ligne  #}
                 <img class="breadcrumb__svg" src="{{ asset('./build/svg/scene.svg') }}">
-                <ul class="breadcrumb__list">
-                    <li><p class="breadcrumb__item">Scene 1 /</p></li>
-                    <li><p class="breadcrumb__item">Scene 3 /</p></li>
-                    <li><p class="breadcrumb__item">Scene 2 /</p></li>
-                    <li><p class="breadcrumb__item">Scene 4 /</p></li>
-                    <li><p class="breadcrumb__item">Scene 5 /</p></li>
-                </ul>
+                {# toutes les scènes sur une ligne #}
+                <div class="breadcrumb__list breadcrumb__list-scene">
+                    {# Contiendra la liste des scènes #}
+                    {# Le bouton d'ajout de scene en fin de ligne #}
+                    <div style="display:none;" class="add_scene add_element breadcrumb__item">+</div>
+                </div>
             </div>
-            <div class="breadcrumb__line breadcrumb__cell">
+
+            {# Ligne du fil d'ariane des cellules #}
+            <div class="breadcrumb__line cell__line">
+                {# le tag svg en début de ligne  #}
                 <img class="breadcrumb__svg" src="{{ asset('./build/svg/cell.svg') }}">
+                {# toutes les cellules sur une ligne #}
+                <div class="breadcrumb__list breadcrumb__list-cell">
+                    {# Contiendra la liste des cellules en version miniature #}
+                    {# Le bouton d'ajout de scene en fin de ligne #}
+                    <div style="display:none;" class="add_cell add_element breadcrumb__item">+</div>
+                </div>
             </div>
-        </div>
+
+        <div> {# Fin du breadcrumb #}
+
     </section>
 
     <section class="section-horizontal-reader">
-
-    </section>
-
-    {# <section class="section-reader">
-
-        <div class="summary">
-
-            <div class="summary__chapter-box">
-                <button class="summary__chapter btn btn--secondary btn--white" id="1">Chapter 1</button>
-                <button class="summary__chapter btn btn--secondary btn--white" id="2">Chapter 2</button>
-                <button class="summary__chapter btn btn--secondary btn--white" id="3">Chapter 3</button>
-                <button class="summary__chapter btn btn--secondary btn--white" id="4">Chapter 4</button>
-                <button class="summary__chapter btn btn--secondary btn--white" id="5">Chapter 5</button>
-                <button class="summary__chapter btn btn--secondary btn--white" id="6">Chapter 6</button>
-            </div>
-
-            <div class="summary__scene-box">
-                <button class="summary__scene btn btn--tertiary btn--white" id="1">Scene 1</button>
-                <button class="summary__scene btn btn--tertiary btn--white" id="2">Scene 2</button>
-                <button class="summary__scene btn btn--tertiary btn--white" id="3">Scene 3</button>
-                <button class="summary__scene btn btn--tertiary btn--white" id="4">Scene 4</button>
-                <button class="summary__scene btn btn--tertiary btn--white" id="5">Scene 5</button>
-                <button class="summary__scene btn btn--tertiary btn--white" id="6">Scene 6</button>
-            </div>
-
-            <div class="summary__progress-bar-box">
-                <progress class="summary__progress-bar" id="file" max="100" value="10"></progress>
-            </div>
-
-        </div>
-
-        <div class="book__box">
-            <div class="book">
-                <div class="book__chapter">
-                    <div class="book_scene">
-                    </div>
+        {# Lecture de cellules #}
+            <div class="card__list">
+                <div class="card__wrapper">
+                    {# Contiendra les cellules #}
                 </div>
             </div>
-        </div>
-
-    </section> #}
-
-
-
-    {# <section class="section-vertical-reader">
-
-    </section> #}
-
-
-
-
-{# 
-    <section class="actes__section">
-        <div class="actes__banner">
-            <h2>Actes</h3>
-        </div>
-        <div class="card__list">
-            <div class="card__wrapper">
-                {% for act in manuscript.acts %}
-                    <div class="card" id="{{ act.id }}">
-                        <div class="card__title">
-                            <h3>Acte name</h3>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-       </div>
     </section>
-
-    <section class="chapitre__section">
-        <div class="chapitres__banner">
-            <h2>Chapitre</h3>
-        </div>
-        <div class="card__list">
-            <div class="card__wrapper">
-                {% for act in manuscript.acts %}
-                    {% for chapter in act.chapters %}
-                        <div class="card">
-                            <div class="card__title">
-                                <h3>Chapter name</h3>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <section class="section__scenes">
-        <div class="scenes__banner">
-            <h3>Scene</h3>
-        </div>
-        <div class="card__list">
-            <div class="card__wrapper">
-                {% for act in manuscript.acts %}
-                    {% for chapter in act.chapters %}
-                        {% for scene in chapter.scenes %}
-                            <div class="card">
-                                <div class="card__title">
-                                    <p>Scene name</p>
-                                </div>                        
-                            </div>
-                        {% endfor %}
-                    {% endfor %}    
-                {% endfor %}    
-            </div>
-        </div>
-    </section>
-
-    <section class="section__cellules">
-        <div class="cellules__banner">
-            <h3>Cellules</h3>
-        </div>
-        <div class="cellules__breadcrumb">
-            {% for act in manuscript.acts %}
-                {% for chapter in act.chapters %}
-                    {% for scene in chapter.scenes %}
-                        {% for cell in scene.cells %}
-                            <div class="cellules__breadcrumb__item"></div>
-                        {% endfor %}
-                    {% endfor %}
-                {% endfor %}
-            {% endfor %}
-        </div>
-        <div class="card__list">
-            <div class="card__wrapper">
-                {% for act in manuscript.acts %}
-                    {% for chapter in act.chapters %}
-                        {% for scene in chapter.scenes %}
-                            {% for cell in scene.cells %}
-                                <div class="card">
-                                    <div class="card__text">
-                                        <p>{{ cell.text_content }}</p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        </div>
-    </section> #}
 
 {% endblock %}

@@ -56,6 +56,11 @@ class Manuscript
      */
     private $cover;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->acts = new ArrayCollection();
@@ -152,6 +157,18 @@ class Manuscript
     public function setCover(?string $cover): self
     {
         $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

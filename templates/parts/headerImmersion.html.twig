@@ -1,0 +1,16 @@
+<div class="navigation immersion">
+
+    <nav class="navigation__nav">
+        <ul class="navigation__list">
+            <li class="navigation__item"><a href="{{ path('home') }}" class="navigation__link">Accueil</a></li>
+            {% if app.user %}
+                <li class="navigation__item"><a href="#" class="navigation__link">Bonjour {{ app.user.username }} [Profil]</a></li>
+                <li class="navigation__item"><a href="{{ path('app_logout') }}" class="navigation__link">Déconnexion</a></li>
+            {% else %}
+                <li class="navigation__item"><a href="{{ path('app_login') }}" class="navigation__link">Connexion</a></li>
+                <li class="navigation__item"><a href="{{ path('app_register') }}" class="navigation__link">Inscription</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+</div>

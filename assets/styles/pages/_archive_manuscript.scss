@@ -1,0 +1,47 @@
+.cover__wrapper {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.admin-manuscrit-container {
+    display:flex;
+    flex-direction: column;
+    
+    .row {
+        margin: 2rem;
+        background-color: $color-grey-light-2;
+        width: 100%;
+        display:flex;
+        flex-direction: row;
+
+        h4 {
+            padding: .2rem 1rem;
+            width: 50rem;
+            font-size: 4rem;
+            font-weight: 700;            
+        }
+
+        &__btn-liste {
+            padding: 1rem;
+            width: 100%;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+    }
+
+}
+
+.section-create {
+    margin: 4rem auto;
+    width: 80%;
+    height: 10rem;
+    background-color: $color-grey-light-2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+

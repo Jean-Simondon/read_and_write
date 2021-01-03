@@ -1,0 +1,73 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+
+   <header class="header">
+      <div class="heading-primary">
+         <h1 class="heading-primary--main">Archives Manuscrit</h1>
+      </div>
+   </header>
+
+   {# Section : je crée un manuscrit #}
+   <section class="section-auteur">
+      <div class="heading-secondary">
+            <h3 class="heading-secondary--main">Ecrire un nouveau manuscrit</h3>
+            {# <p class="heading-secondary--sub">Profitez de ce site pour trouver tous les outils</p>
+            <p class="heading-secondary--sub">nécessaire à la rédaction de votre prochain récit</p> #}
+      </div>
+      <a href="{{ path('manuscript_create') }}" class="btn btn--primary btn--white">
+         <p>Commencer</p>
+      </a>
+   </section>
+
+   <section class="section-auteur">
+      <a href="{{ path('manuscript_create') }}" class="btn btn--primary btn--white">
+         <p>Commencer</p>
+      </a>
+      <div class="heading-secondary">
+            <h3 class="heading-secondary--main">Nouvel auteur</h3>
+            {# <p class="heading-secondary--sub">Profitez de ce site pour trouver tous les outils</p>
+            <p class="heading-secondary--sub">nécessaire à la rédaction de votre prochain récit</p> #}
+      </div>
+   </section>
+
+
+
+   {# Manuscrit existant pour chaque nom d'auteur : #}
+   <div class="shell">
+      {% for penName, author in manuscriptsByAuthors %}
+
+         <h2>Manuscrit en tant que {{ penName }}</h2>
+
+         <div class="js-toggle-admin">
+
+            <div class="cover__wrapper">
+                  {% for manuscript in author %}
+                     <div class="cover" style="background-image: url('./build/cover/{{ manuscript.cover }}">
+                        <a class="cover__link" href="{{ path('details_manuscript', { id: manuscript.id } ) }}">
+                              <div class="cover__title">
+                                 {{ manuscript.title }}
+                              </div>
+                        </a>
+                     </div>
+                  {% endfor %}
+            </div>
+
+         {# 
+            <div class="cover__wrapper">   
+               {% for manuscript in author %}
+                  <div class="cover" style="background-image: url('./build/cover/{{ manuscript.cover }}">
+                     <div class="cover__title">
+                        {{ manuscript.title }}
+                     </div>
+                     <a class="cover__link" href="{{ path('details_manuscript', { id: manuscript.id } ) }}">Lecture</a>
+                  </div>
+               {% endfor %}
+            </div> #}
+
+         </div>
+
+      {% endfor %}
+   </div>
+
+{% endblock %}

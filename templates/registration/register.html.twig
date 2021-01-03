@@ -5,7 +5,8 @@
     <title>Register</title>
 
     {% block body %}
-        {% for flashError in app.flashes('verify_email_error') %}
+
+        {% for flashError in app.flashes('connnection') %}
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
 

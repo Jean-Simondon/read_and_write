@@ -1,10 +1,10 @@
 // ----------------- TRAVAL QUOTIDIEN ----------------- :
 
-Lancer les serveur sur MAMP
-puis
-symfony server:start
+- Lancer les serveur sur MAMP
+    puis
+- symfony server:start
 
-// ----------------- TRAVAIIL SUR LES ASSETS ----------------- :
+// ----------------- TRAVAIL SUR LES ASSETS ----------------- :
 
 npm run dev || npm run watch
 
@@ -43,40 +43,18 @@ cmd : composer require symfony/orm-pack
 action : configuration du fichier .env (utiliser localhost et non pas 127.0.0.1)
 cmd : php bin/console doctrine:database:create
 
-info : DATABASE_URL=mysql://root:root@localhost:3306/read_and_write?serverVersion=5.7 avec "localhost" et non pas "127.0.0.1"
 
+
+
+// ----------------- ENV.LOCAL ----------------- :
+
+info : DATABASE_URL=mysql://root:root@localhost:3306/read_and_write?serverVersion=5.7 avec "localhost" et non pas "127.0.0.1"
 
 // ----------------- BUG CONNU ----------------- :
 
     Problème : de connexion dans les controllers qui ne connait pas mysql :
-https://blog.stevecohen.fr/mamp-symfony-sqlstatehy000-2002-no-such-file-or-directory/
-    Solution : création d'un lien symbolique
-cmd :    sudo ln -s /Applications/MAMP/tmp/mysql /var/mysql
-    Popur supprimer de lien symbolique
-cmd : sudo unlink nom_du_lien             ou nom_du lien == /var/mysql
-
-// ----------------- QUESTION ----------------- :
-
-
-
-
-
-
-
-// ----------------- QUESTION ----------------- :
-
-À faire
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Solution : création d'un lien symbolique : https://blog.stevecohen.fr/mamp-symfony-sqlstatehy000-2002-no-such-file-or-directory/
+            cmd : sudo ln -s /Applications/MAMP/tmp/mysql /var/mysql
+                Popur supprimer de lien symbolique
+                    cmd : sudo unlink nom_du_lien             ou nom_du lien == /var/mysql
 

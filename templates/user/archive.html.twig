@@ -1,0 +1,38 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block content %}
+
+    <header class="header">
+        <div class="heading-primary">
+            <h1 class="heading-primary--main">Archives Users</h1>
+        </div>
+    </header>
+
+    {% for flashError in app.flashes('success') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="admin-manuscrit-container shell">
+        {% for user in users %}
+            <div class="row">
+                <h4>{{ user.username }}</h4>
+                <p>{{ user.roles[0] }}</p>
+                <div class="row__btn-liste">
+                    <a href="{{ path('update_user', { id: user.id }) }}" class="btn btn--admin btn--white">
+                        <p>Update</p>
+                    </a>
+                    <a href="{{ path('remove_user', { id: user.id }) }}" class="btn btn--admin btn--white">
+                        <p>Remove</p>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="section section-create">
+        <a href="{{ path('create_user') }}" class="btn btn--admin btn--grey">
+            <p>Nouvel Utilisateur</p>
+        </a>
+    </div>
+
+{% endblock %}

@@ -4,6 +4,10 @@
 
     {% block body %}
 
+        {% for flashError in app.flashes('connection') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
+
         <form method="post" class="form-container">
 
             {% if error %}
@@ -15,7 +19,7 @@
                     You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% endif %}
-            
+
             <div class="item item--1">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             </div>
@@ -50,6 +54,9 @@
             </div>
 
         </form>
+
+    <h1>Pas encore inscrit ? <a href="{{ path('app_register') }}">Créer un compte</a></h1>
+
 
     {% endblock %}
 

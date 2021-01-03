@@ -8,6 +8,10 @@
 
         {% include 'parts/header.html.twig' %}
 
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+            {% include 'parts/header-admin.html.twig' %}
+        {% endif %}
+
         {% block content %} <h1>Contenu</h1> {% endblock %}
 
         {% include 'parts/footer.html.twig' %}

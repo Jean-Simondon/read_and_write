@@ -60,6 +60,12 @@ class Author
      */
     private $manuscripts;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Author")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $User;
+
     public function __construct()
     {
         $this->manuscripts = new ArrayCollection();
@@ -175,6 +181,18 @@ class Author
     public function __toString()
     {
         return $this->getPenName();
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
+
+        return $this;
     }
     
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -23,7 +25,7 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      */
     private $username;
 
@@ -44,7 +46,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true, unique=true)
      */
     private $FirstName;
 
@@ -52,6 +54,17 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $LastName;
+
+    /**
+     * @ORM\Column( nullable=true )
+     * @ORM\OneToMany(targetEntity=Author::class, mappedBy="User")
+     */
+    private $Author;
+
+    public function __construct()
+    {
+        $this->Author = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -82,7 +95,10 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // $roles[] = 'ROLE_ADMIN';
+        if ( count($roles) < 1 ) {
+            $roles[] = 'ROLE_USER';
+        }
 
         return array_unique($roles);
     }
@@ -158,6 +174,36 @@ class User implements UserInterface
     public function setLastName(?string $LastName): self
     {
         $this->LastName = $LastName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Author[]
+     */
+    public function getAuthor(): Collection
+    {
+        return $this->Author;
+    }
+
+    public function addAuthor(Author $author): self
+    {
+        if (!$this->Author->contains($author)) {
+            $this->Author[] = $author;
+            $author->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAuthor(Author $author): self
+    {
+        if ($this->Author->removeElement($author)) {
+            // set the owning side to null (unless already changed)
+            if ($author->getUser() === $this) {
+                $author->setUser(null);
+            }
+        }
 
         return $this;
     }
