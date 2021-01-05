@@ -21,8 +21,17 @@ class ManuscriptType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre'
             ])
+            ->add('subtitle', TextType::class, [
+                'label' => 'Sous-titre'
+            ])
             ->add('type', TextType::class, [
                 'label' => 'genre'
+            ])
+            ->add('fourthCover', TextType::class, [
+                'label' => '4eme de couverture'
+            ])
+            ->add('storyTelling', TextType::class, [
+                'label' => 'Metha histoire'
             ])
             ->add('cover', TextType::class, [
                 'label' => 'Image de couverture'

@@ -8,6 +8,10 @@
         </div>
     </header>
 
+    {% if app.user and is_granted('ROLE_ADMIN') %}
+        <button class="js-toggle-admin-button btn btn--admin btn--grey">Changer vers l'admin</button> 
+    {% endif %}
+
     <div class="js-toggle-admin shell">
         <div class="cover__wrapper">
             {% for manuscript in manuscripts %}
@@ -50,9 +54,5 @@
         </div>
     
     </div>
-
-    {% if app.user and is_granted('ROLE_ADMIN') %}
-        <button class="js-toggle-admin-button btn btn--admin btn--grey">Changer vers l'admin</button> 
-    {% endif %}
 
 {% endblock %}

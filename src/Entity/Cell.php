@@ -32,7 +32,7 @@ class Cell
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $text_content;
+    private $textContent;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -102,14 +102,14 @@ class Cell
         return $this;
     }
 
-    public function getText_Content(): ?string
+    public function getTextContent(): ?string
     {
-        return $this->text_content;
+        return $this->textContent;
     }
 
-    public function setText_Content(?string $text_content): self
+    public function setTextContent(?string $textContent): self
     {
-        $this->text_content = $text_content;
+        $this->textContent = $textContent;
 
         return $this;
     }

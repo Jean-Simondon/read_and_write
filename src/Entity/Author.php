@@ -26,34 +26,9 @@ class Author
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $login;
-
-    /**
-     * @ORM\Column(type="string", length=30, nullable=true, name="last_name")
-     */
-    private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=30, nullable=true, name="first_name")
-     */
-    private $firstName;
-
-    /**
      * @ORM\Column(type="string", length=30, nullable=true, name="pen_name")
      */
     private $penName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
-    private $email;
 
     /**
      * @ORM\OneToMany(targetEntity=Manuscript::class, mappedBy="author")
@@ -88,62 +63,14 @@ class Author
         return $this;
     }
 
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(?string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(?string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
     public function getPenName(): ?string
     {
         return $this->penName;
     }
 
-    public function setPenName(?string $pen_name): self
+    public function setPenName(?string $penName): self
     {
-        $this->pen_name = $pen_name;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
+        $this->penName = $penName;
 
         return $this;
     }
@@ -194,7 +121,6 @@ class Author
 
         return $this;
     }
-    
 
 
 }

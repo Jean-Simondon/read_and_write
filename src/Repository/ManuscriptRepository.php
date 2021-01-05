@@ -19,6 +19,24 @@ class ManuscriptRepository extends ServiceEntityRepository
         parent::__construct($registry, Manuscript::class);
     }
 
+    // /**
+    //  * @return Manuscript[] Renvoie les manuscrit d'un Utilisateur, trié par nom d'auteur et date de création
+    //  */
+    // public function findOrderedByAuthorAndCreateDate($userId)
+    // {
+    //     $result = $this->createQueryBuilder('m')
+    //         ->andWhere('m.author.user.id = ' . $userId)
+    //         ->orderBy('m.author', 'ASC')
+    //         ->getQuery()
+    //         ->getResult();
+
+    //     dump($result);
+    //     die();
+
+    //     return null;
+    // }
+
+
     /**
     * @return Manuscript[] Returns an array of Manuscript objects
     */

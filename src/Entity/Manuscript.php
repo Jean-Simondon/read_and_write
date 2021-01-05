@@ -31,9 +31,9 @@ class Manuscript
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $abstract;
+    private $fourthCover;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -61,6 +61,16 @@ class Manuscript
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=25, nullable=true)
+     */
+    private $subTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $storyTelling;
+
     public function __construct()
     {
         $this->acts = new ArrayCollection();
@@ -83,14 +93,14 @@ class Manuscript
         return $this;
     }
 
-    public function getAbstract(): ?string
+    public function getFourthCover(): ?string
     {
-        return $this->abstract;
+        return $this->fourthCover;
     }
 
-    public function setAbstract(?string $abstract): self
+    public function setFourthCover(?string $fourthCover): self
     {
-        $this->abstract = $abstract;
+        $this->fourthCover = $fourthCover;
 
         return $this;
     }
@@ -169,6 +179,30 @@ class Manuscript
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getSubTitle(): ?string
+    {
+        return $this->subTitle;
+    }
+
+    public function setSubTitle(?string $subTitle): self
+    {
+        $this->subTitle = $subTitle;
+
+        return $this;
+    }
+
+    public function getStoryTelling(): ?string
+    {
+        return $this->storyTelling;
+    }
+
+    public function setStoryTelling(?string $storyTelling): self
+    {
+        $this->storyTelling = $storyTelling;
 
         return $this;
     }

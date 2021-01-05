@@ -43,7 +43,8 @@ cmd : composer require symfony/orm-pack
 action : configuration du fichier .env (utiliser localhost et non pas 127.0.0.1)
 cmd : php bin/console doctrine:database:create
 
-
+cmd : php bin/console doctrine:schema:update --dump-sql
+cmd : php bin/console doctrine:schema:update --force
 
 
 // ----------------- ENV.LOCAL ----------------- :

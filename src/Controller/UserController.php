@@ -30,7 +30,6 @@ class UserController extends AbstractController
 
     /**
      * @Route("/create_user", name="create_user")
-     * @isGranted("ROLE_ADMIN")
      */
     public function create(Request $request): Response
     {
@@ -44,10 +43,10 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            
+
             $this->addFlash('success', 'Un nouvel utilisateur a été ajouté');
 
-            return $this->redirectToRoute('all_user');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('registration/register.html.twig', [

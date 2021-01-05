@@ -4,7 +4,7 @@
 
     {% include 'parts/headerImmersion.html.twig' %}
 
-    {% if (app.user and app.user.id == manuscript.author.user.id) %}
+    {% if (app.user and app.user.id == manuscript.author.user.id or is_granted('ROLE_ADMIN')) %}
         <div class="edit-switch">
             <p>Editing is off / Switch</p>
         </div>
@@ -23,8 +23,8 @@
 
         <div class="section-cover__title-box">
             <h1 class="title">
-                <span class="title--main editable-new">{{ manuscript.title }}</span>
-                <span class="title--sub editable-new">L'effet de Surplomb</span>
+                <span class="title--main editable-new title-edit">{{ manuscript.title }}</span>
+                <span class="title--sub editable-new sub-title-edit">{{ manuscript.subtitle }}</span>
             </h1>
             <a href="#" class="btn btn--primary btn--yellow btn--animated-b">Commencer la lecture</a>
         </div>
@@ -33,25 +33,16 @@
     {# 4eme de couverture #}
     <section class="section section-fourth-cover">
         <h2 class="">4eme de couverture</h2>
-        <p class="editable-new 4eme-de-couv">
-            Les abondantes ressources du système solaire soutiendraient aisément une population de centaines de milliards d’individus.
-            Les mégacorporations ont bien compris la fertilité du terrain et la commercialisation de l’espace vit une croissance folle.
-            Stations spatiales, avant-postes et chantiers spatiaux sont plus nombreux chaque année. Pour assurer leurs activités, elles recrutent.
-            Leurs employés : ces aventuriers modernes, les astronautes.
-            Haruka atterrit à Taïwan pour rejoindre l’école d’astronautique avec la ferme intention de n’en repartir qu’une fois la formation d’élève astronaute terminé et seulement pour rejoindre l’espace en tant qu’astronaute professionnelle.
-            Sans jamais avoir quitté la Terre, Haruka est souvent dans la lune, trop souvent pour respecter cette dévotion que demande la formation, et ce n’est pas son tigre pédagogique qui mettra définitivement fin à cette tendance ?! Si en plus s’en mêle un savant fou, aux expériences douteuses et un monde où la cyberculture pop use de la réalité augmentée pour transformer, par le surréalisme, les lieux et les gens, alors…
-            Mais cette tendance à être dans la lune pourrait bien être son véritable moyen d’accès à l’espace.
+        <p class="editable-new 4eme-de-couv fourth-cover-edit">
+           {{ manuscript.fourthCover }}
         </p>
     </section>
 
     {# Meta story #}
     <section class="section section-meta-story">
         <h2 class="">Un brin de méta-histoire</h2>
-        <p class="editable-new meta-histoire">
-            Alors que je construisais ma yourte, alors initialement prévu pour me loger de manière économique entre deux voyages, j'ai doucement glissé vers l'écriture d'un roman de science-fiction.
-            Petit à petit, je me suis retrouvé impliqué dans ce projet qui s'est révélé bien plus long et bien plus prenant que ce que j'avais pu imaginer. Sur plusieurs années, j'ai réalisé un travail d'études des sciences et d'imagination d'un univers entier à dessein d'y placer une intrigue de science-fiction.
-            J'ai accordé plusieurs années à ce travail, et à force de travail, je suis parvenu jusqu'au support du livre, de sa mise en page, et de sa place dans quelques rayons de librairie montpelliéraine.
-            Aujourd'hui, d'autres projets m'occupent, mais écrire la suite me démange tout comme reprendre ce premier tome pour donner un jet plus aboutit.
+        <p class="editable-new meta-histoire storyTelling-edit">
+            {{ manuscript.storyTelling }}
         </p>
     </section>
 

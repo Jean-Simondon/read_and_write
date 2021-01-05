@@ -3,9 +3,16 @@
         <h4 class="footer__heading--main">
             This is the footer
         </h4>
+    
+        {% if (manuscript is defined) %}
+            <p class="footer__heading--sub">
+                Un récit de {{ manuscript.author.penName }}
+            </p>
+        {% else %}
         <p class="footer__heading--sub">
             And here is the text in the footer
         </p>
+        {% endif %}
     </div>
     <nav class="footer__nav">
         <ul class="footer__nav-list">

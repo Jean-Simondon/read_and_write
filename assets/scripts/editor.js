@@ -129,6 +129,58 @@ export default class Editor {
                 console.log('cellules édité');
             });
 
+        } else if ( $(toSave).hasClass('title-edit') ) {
+
+            $.ajax({
+                url: `${$('body').data('urlServer')}/manuscript/edit_title/${self.currentManuscript}`,
+                method: 'POST',
+                data: {
+                    titleContent: $(toSave).text(),
+                },
+                datatype: 'json',
+            }).done(function(data) {
+                console.log('titre édité');
+            });
+
+        } else if ( $(toSave).hasClass('sub-title-edit') ) {
+
+            $.ajax({
+                url: `${$('body').data('urlServer')}/manuscript/edit_subtitle/${self.currentManuscript}`,
+                method: 'POST',
+                data: {
+                    subtitleContent: $(toSave).text(),
+                },
+                datatype: 'json',
+            }).done(function(data) {
+                console.log('sous titre édité');
+            });
+
+        } else if ( $(toSave).hasClass('fourth-cover-edit') ) {
+            console.log('sauvegarde 4eme de couverture');
+            $.ajax({
+                url: `${$('body').data('urlServer')}/manuscript/edit_fourthCover/${self.currentManuscript}`,
+                method: 'POST',
+                data: {
+                    fourthCoverContent: $(toSave).text(),
+                },
+                datatype: 'json',
+            }).done(function(data) {
+                console.log('4eme de couverture édité');
+            });
+
+        } else if ( $(toSave).hasClass('storyTelling-edit') ) {
+            console.log('sauvegarde story telling');
+            $.ajax({
+                url: `${$('body').data('urlServer')}/manuscript/edit_storyTelling/${self.currentManuscript}`,
+                method: 'POST',
+                data: {
+                    storyTellingContent: $(toSave).text(),
+                },
+                datatype: 'json',
+            }).done(function(data) {
+                console.log('metha histoire éditée');
+            });
+            
         } else {
 
             console.log('element pas pris en charge encore');

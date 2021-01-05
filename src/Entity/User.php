@@ -41,12 +41,12 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=40)
+     * @ORM\Column(type="string", length=40, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true, unique=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $FirstName;
 
@@ -105,6 +105,14 @@ class User implements UserInterface
 
     public function setRoles(array $roles): self
     {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function setRolesWithAdmin(array $roles): self
+    {
+        $roles[] = 'ROLE_ADMIN';
         $this->roles = $roles;
 
         return $this;

@@ -204,7 +204,7 @@ export default class Summary {
         for (let i = 0; i < data.length; i++) {
             html = `<div class="card">
                         <div class="card__text">
-                            <p data-cell-id="${data[i].id}" class="editable-off cell-edit">${data[i].text_content}</p>
+                            <p data-cell-id="${data[i].id}" class="editable-off cell-edit">${data[i].textContent}</p>
                         </div>
                     </div>`;
             $(cardContainer).append(html);

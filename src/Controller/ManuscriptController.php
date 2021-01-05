@@ -46,9 +46,11 @@ class ManuscriptController extends AbstractController
     public function archives_my_manuscripts(ManuscriptRepository $manuscriptRepository)
     {
 
-        $user = $this->getUser();
-        $userId = $user->getId();
+        // $result = $manuscriptRepository->findOrderedByAuthorAndCreateDate($this->getUser()->getId());
+        // dump($result);
+        // die();
 
+        $userId = $this->getUser()->getId();
         $authors = $this->getDoctrine()->getRepository(Author::class)->findBy(['User' => $userId]);
 
         $manuscripts = [];
@@ -229,13 +231,12 @@ class ManuscriptController extends AbstractController
         foreach($cells as $cell) {
             $temp = [
                 'id' => $cell->getId(),
-                'text_content' => $cell->getText_Content(),
+                'textContent' => $cell->getTextContent(),
             ];
             $jsonData[] = $temp;
         }
         return new JsonResponse($jsonData);
     }
-
 
     /**
      * 
@@ -316,7 +317,7 @@ class ManuscriptController extends AbstractController
 
         $cell = new Cell;
         $cell->setScene($scene);
-        $cell->setText_Content("...");
+        $cell->setTextContent("...");
         $cell->setPublished(true);
         $scene->addCell($cell);
 
@@ -394,11 +395,67 @@ class ManuscriptController extends AbstractController
         $title = $request->request->get('cellContent');
         $cell = $this->getDoctrine()->getRepository(Cell::class)->find($id);
 
-        $cell->setText_Content($title);
+        $cell->setTextContent($title);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($cell);
         $entityManager->flush();
 
+        return new JsonResponse(['success']);
+    }
+
+    /**
+     * 
+     * @Route("manuscript/edit_title/{id}", name="edit_title")
+     */
+    public function editTitle(Request $request, Manuscript $manuscript): Response
+    {
+        $title = $request->request->get('titleContent');
+        $manuscript->setTitle($title);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($manuscript);
+        $entityManager->flush();
+        return new JsonResponse(['success']);
+    }
+
+    /**
+     * 
+     * @Route("manuscript/edit_subtitle/{id}", name="edit_subtitle")
+     */
+    public function editSubTitle(Request $request, Manuscript $manuscript): Response
+    {
+        $subtitle = $request->request->get('subtitleContent');
+        $manuscript->setSubTitle($subtitle);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($manuscript);
+        $entityManager->flush();
+        return new JsonResponse(['success']);
+    }
+
+    /**
+     * 
+     * @Route("manuscript/edit_fourthCover/{id}", name="edit_fourthCover")
+     */
+    public function editFourthCover(Request $request, Manuscript $manuscript): Response
+    {
+        $fourthCoverContent = $request->request->get('fourthCoverContent');
+        $manuscript->setFourthCover($fourthCoverContent);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($manuscript);
+        $entityManager->flush();
+        return new JsonResponse(['success']);
+    }
+
+    /**
+     * 
+     * @Route("manuscript/edit_storyTelling/{id}", name="edit_storyTelling")
+     */
+    public function editStoryTelling(Request $request, Manuscript $manuscript): Response
+    {
+        $storyTellingContent = $request->request->get('storyTellingContent');
+        $manuscript->setStoryTelling($storyTellingContent);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($manuscript);
+        $entityManager->flush();
         return new JsonResponse(['success']);
     }
 
